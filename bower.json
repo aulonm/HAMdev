@@ -1,0 +1,22 @@
+{
+  "name": "HAMdev",
+  "homepage": "https://github.com/aulonm/HAMdev",
+  "authors": [
+    "Halvor Mangseth <h.mangseth@gmail.com>"
+  ],
+  "description": "HAMdev DHIS2 bower dependency file",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "angular": "~1.4.7"
+  }
+}
