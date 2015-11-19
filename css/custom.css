@@ -1,3 +1,19 @@
 .thumbnail {
     background-color: #F9F9F9;
 }
+
+.btn-primary {
+    background-color: #1D5287;
+    border-color: #123354;
+    color: #FFFFFF;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+    color: #FFFFFF;
+    background-color: #2466A8;
+    border-color: #1B4C7E;
+}

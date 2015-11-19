@@ -71,8 +71,55 @@
                 </div>
             </div>
             <!-- Results -->
-            <div class="thumbnail">
-                
+            <div class="panel-group" id="accordion">
+                <!-- Vennesla -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Vennesla</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse">
+                        <form class="panel-body">
+                            <!--<h5>Name</h5>-->
+                            <div class="form-group">
+                                <label for="ResultName">Name</label>
+                                <input type="text" class="form-control" id="ResultName" value="Vennesla">
+                            </div>
+                            <div class="form-group">
+                                <label for="ResultShortName">Short name</label>
+                                <input type="text" class="form-control" id="ResultShortName" value="Norges høl">
+                            </div>
+                            <button type="button" class="btn btn-primary" id="saveVennesla">
+                                <span class="glyphicon glyphicon-floppy-disk"> Save</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Oslo -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Oslo</a>
+                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <form class="panel-body">
+                            <!--<h5>Name</h5>-->
+                            <div class="form-group">
+                                <label for="Result2Name">Name</label>
+                                <input type="text" class="form-control" id="Result2Name" value="Oslo">
+                            </div>
+                            <div class="form-group">
+                                <label for="Result2ShortName">Short name</label>
+                                <input type="text" class="form-control" id="Result2ShortName" value="Oslo vakreste slum">
+                            </div>
+                            <button type="button" class="btn btn-primary" id="saveOslo">
+                                <span class="glyphicon glyphicon-floppy-disk"> Save</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
