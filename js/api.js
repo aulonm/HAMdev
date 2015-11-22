@@ -4,12 +4,52 @@
 /* Angular module to get all the information from the web api */
 
 (function(services){
+    'use strict';
+
 
     services.factory('api', function($q, $resource, $http, $rootScope){
-       // Get requests osv
+        // Get requests osv
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "manifest.webapp", false);
+        xhttp.send(null);
 
-        // Henter ut all informasjon vi skal bruke
+        var response = JSON.parse(xhttp.responseText);
+        $rootScope.API = response.activities.dhis.href; //need to doublecheck this
+
+        // The database
+        // https://play.dhis2.org/demo/api/organisationUnits
+
+        // List of organisation units like this:
+        //<organisationUnit lastUpdated="2014-11-25T09:37:54.322+0000" code="OU_651071" created="2012-02-17T15:54:39.987+0000" name="Adonkia CHP" id="Rp268JB6Ne4" href="https://play.dhis2.org/demo/api/organisationUnits/Rp268JB6Ne4"/>
+        //Inside each unit, the information is like this:
+        //<organisationUnit xmlns="http://dhis2.org/schema/dxf/2.0" code="OU_651071" uuid="bf07fb5b-a1cf-4a83-b3ec-9cc42854adcf" lastUpdated="2014-11-25T09:37:54.322+0000" href="https://play.dhis2.org/demo/api/organisationUnits/Rp268JB6Ne4" id="Rp268JB6Ne4" level="4" created="2012-02-17T15:54:39.987+0000" name="Adonkia CHP" shortName="Adonkia CHP">
+        // name: "Adonkia CHP"
+        // shortname: "Adonkia CHP"
+        // level="4"
+        // parent: <parent id="qtr8GGlm4gg" name="Rural Western Area"
+        // two children
+
+
+        // Level one organisation:
+        //https://play.dhis2.org/demo/api/organisationUnits/ImspTQPwCqd
+        // level two organisation: Fuckton of coordinates (POLYGONS!)
+        // https://play.dhis2.org/demo/api/organisationUnits/eIQbndfxQMb
+        // level three organisation: Has many coordinates (POLYGONS)
+        // https://play.dhis2.org/demo/api/organisationUnits/l0ccv2yzfF3
+        // level four organisation:
+        // https://play.dhis2.org/demo/api/organisationUnits/OY7mYDATra3
+        //
+
+        return {
+            // Different functions
+            // getting organization units
+            // saving units
+            // etc.
+            // I think this is a good way of doing it
+            // Doesnt actually save, just returns json files. The controller saves stuff to variables and arrays
+            // and shit
+        }
     });
 
 
-})(mainServices);
+})(angular.module('mainServices'));
