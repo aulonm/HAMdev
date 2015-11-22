@@ -14,13 +14,17 @@
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="bower_components/lodash.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="js/mapsController.js"></script>
 
 
     <link href="css/custom.css" rel="stylesheet">
 
 </head>
-<body>
+<body ng-controller="mapsCtrl">
 <nav class="navbar" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -125,6 +129,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div>
+        <div class="col-lg-8">
+            <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
         </div>
     </div>
 </div>
