@@ -8,10 +8,10 @@
     /* Lager main moduler, og saa sier vi at de mindre modulene skal ta ting fra disse,
     eller bygges videre paa disse*/
     angular.module('mainServices', ['ngResource']);
-    var app = angular.module('mainControllers', ['mainServices', 'uiGmapgoogle-maps']);
+    angular.module('mainControllers', ['mainServices']);
 
     /* Define modules */
-
+    var app  = angular.module('main', ['ngRoute', 'mainControllers', 'uiGmapgoogle-maps']);
     /* controller for google maps */
     angular.controller('GoogleMapCtr', function($scope){
         $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
