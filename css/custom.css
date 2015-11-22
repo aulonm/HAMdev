@@ -18,4 +18,15 @@
     border-color: #1B4C7E;
 }
 
-.angular-google-map-container { height: 400px; background-color: #00b3ee }
+
+.panel-default > .panel-heading {
+    color: #000000;
+    background-color: #FFFFFF;
+}
+
+/* Google maps */
+.angular-google-map-container {
+    height: 400px;
+    background-color: #2aabd2;
+}
+

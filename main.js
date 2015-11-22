@@ -11,7 +11,7 @@
     angular.module('mainControllers', ['mainServices', 'uiGmapgoogle-maps']);
 
     /* Define modules */
-    var app  = angular.module('main', ['ngRoute', 'mainControllers']);
+    var app = angular.module('main', ['ngRoute', 'mainControllers']);
 
     app.config(function(uiGmapGoogleMapApiProvider){
         uiGmapGoogleMapApiProvider.configure({
@@ -19,7 +19,5 @@
             libraries: 'weather, geometry, visualization'
         });
     });
-
-
 
 })(angular);

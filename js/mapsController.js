@@ -3,6 +3,7 @@
  */
 (function(controllers){
 
+
     controllers.controller("mapsCtrl", function($scope, uiGmapGoogleMapApi) {
         // Do stuff with your $scope.
         // Note: Some of the directives require at least something to be defined originally!
@@ -26,8 +27,5 @@
             $scope.map = { center: { latitude: 45, longitude: -73 }, options:baseOptions, zoom: 8 };
         });
     });
-
-
-
 
 })(angular.module('mainControllers'));
