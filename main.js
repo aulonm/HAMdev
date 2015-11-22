@@ -13,7 +13,7 @@
     /* Define modules */
     var app = angular.module('main', ['ngRoute', 'mainControllers']);
 
-        /* controller for google maps */
+    /* controller for google maps */
     angular.controller('GoogleMapCtr', function($scope){
         $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
     });
