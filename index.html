@@ -6,28 +6,27 @@
 
     <!-- CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="css/custom.css" rel="stylesheet">
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <!-- Google Maps -->
-    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
-    <script type="text/javascript" src='/bower_components/lodash/lodash.min.js'></script>
-    <script type="text/javascript"
-            src='/bower_components/angular-simple-logger/dist/angular-simple-logger.min.js'></script>
-    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-    <script type="text/javascript" src='/bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
 
     <!-- Angular -->
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
 
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="bower_components/lodash.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
 
-    <link href="css/custom.css" rel="stylesheet">
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="js/mapsController.js"></script>
+
+
 
 </head>
-<body>
+<body ng-controller="mapsCtrl">
 <nav class="navbar" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -141,12 +140,9 @@
             </div>
         </div>
     </div>
-    <!-- Google maps -->
-    <div class="col-lg-8">
-        <div ng-controller="GoogleMapCtr as map">
-            <div class="angular-google-map-container">
-                <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
-            </div>
+    <div>
+        <div class="col-lg-8">
+            <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
         </div>
     </div>
 </div>

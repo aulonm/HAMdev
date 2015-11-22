@@ -14,10 +14,11 @@
     /* Define modules */
     var app = angular.module('main', ['ngRoute', 'mainControllers']);
 
-    /* controller for google maps */
-    angular.controller('GoogleMapCtr', function($scope){
-        $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+    app.config(function(uiGmapGoogleMapApiProvider){
+        uiGmapGoogleMapApiProvider.configure({
+            v: '3.20',
+            libraries: 'weather, geometry, visualization'
+        });
     });
-
 
 })(angular);
