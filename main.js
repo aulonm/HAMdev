@@ -11,10 +11,11 @@
     angular.module('mainControllers', ['mainServices']);
 
     /* Define modules */
-    var app  = angular.module('main', ['ngRoute', 'mainControllers']);
-
-
-
+    var app  = angular.module('main', ['ngRoute', 'mainControllers', 'uiGmapgoogle-maps']);
+    /* controller for google maps */
+    angular.controller('GoogleMapCtr', function($scope){
+        $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+    });
     /* Her redirecter den til den sida som vi vil skal vises, fyller opp index.html fila */
     app.config(['$routeProvider',
         function($routeProvider){
