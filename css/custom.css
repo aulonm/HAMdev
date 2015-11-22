@@ -17,3 +17,8 @@
     background-color: #2466A8;
     border-color: #1B4C7E;
 }
+
+.panel-default > .panel-heading {
+    color: #000000;
+    background-color: #FFFFFF;
+}
