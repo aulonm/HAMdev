@@ -8,6 +8,7 @@
     /* Lager main moduler, og saa sier vi at de mindre modulene skal ta ting fra disse,
     eller bygges videre paa disse*/
     angular.module('mainServices', ['ngResource']);
+
     angular.module('mainControllers', ['mainServices', 'uiGmapgoogle-maps']);
 
     /* Define modules */
