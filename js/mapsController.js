@@ -24,7 +24,23 @@
                     'style': 'SMALL'
                 }
             };
-            $scope.map = { center: { latitude: 45, longitude: -73 }, options:baseOptions, zoom: 8 };
+            $scope.map = {
+                center: { latitude: 45, longitude: -73 },
+                options:baseOptions,
+                zoom: 8,
+                events: {
+                    setCenter: function(){
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function(position){
+                                var center = {latitude: position.coords.latitude, longitude: position.coords.longitude}
+                                $scope.map.center = center;
+                            });
+                        }else{
+                            /* We are not allowed to track location */
+                        }
+                    }
+                }
+            };
         });
     });
 
