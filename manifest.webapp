@@ -1,0 +1,20 @@
+{
+    "version": "0.1",
+    "name": "Organisation Units Manager",
+    "description": "An app that manages search, presentation and editing of organisation units",
+    "launch_path": "index.html",
+    "installs_allowed_from":["*"],
+    "icons": {
+        "16": null
+    },
+    "developer": {
+    "name": "Aulon Mujaj, Halvor Hølmebakk Mangseth, Magnus Hestvik",
+    "url": "http://localhost:8082/apps/Arkiv"
+    },
+    "default_locale": "en",
+    "activities": {
+        "dhis": {
+            "href": "http://localhost:8082"
+        }
+    }
+}
