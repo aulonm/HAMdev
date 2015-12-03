@@ -144,6 +144,12 @@
     <div>
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 thumbnail">
             <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+                <ui-gmap-marker ng-repeat="m in map.markers" coords="m" icon="m.icon" click="onMarkerClicked(m)" idKey="m.id" options="m.options">
+                </ui-gmap-marker>
+                <ui-gmap-polygon ng-repeat="p in map.polygons track by p.id" path="p.path" stroke="p.stroke" visible="p.visible"
+                                 geodesic="p.geodesic" fill="p.fill" fit="false" editable="false" draggable="false"
+                                 events="map.polygonEvents">
+                </ui-gmap-polygon>
             </ui-gmap-google-map>
         </div>
     </div>

@@ -4,7 +4,7 @@
 (function(controllers){
 
 
-    controllers.controller("mapsCtrl", function($scope, uiGmapGoogleMapApi) {
+    controllers.controller("mapsCtrl", function($scope, uiGmapGoogleMapApi, uiGmapIsReady) {
         // Do stuff with your $scope.
         // Note: Some of the directives require at least something to be defined originally!
         // e.g. $scope.markers = []
@@ -25,7 +25,7 @@
                 }
             };
             $scope.map = {
-                center: { latitude: 45, longitude: -73 },
+                center: { latitude: 45, longitude: -74.5 },
                 options:baseOptions,
                 zoom: 8,
                 events: {
@@ -39,7 +39,66 @@
                             /* We are not allowed to track location */
                         }
                     }
-                }
+                },
+                /* Dummy data for showing Markers and Polygons */
+                markers: [
+                    {
+                        id: 1,
+                        latitude: 45,
+                        longitude: -74,
+                        showWindow: false,
+                        options: {}
+                    },
+                    {
+                        id: 2,
+                        latitude: 45.1,
+                        longitude: -74.1,
+                        showWindow: false,
+                    }
+                ],
+                polygons: [
+                    {
+                        id: 1,
+                        path: [
+                            {
+                                latitude: 44.8,
+                                longitude: -74
+                            },
+                            {
+                                latitude: 45,
+                                longitude: -74.2
+                            },
+                            {
+                                latitude: 44.99,
+                                longitude: -74.8,
+                            },
+                            {
+                                latitude: 45.092,
+                                longitude: -75
+                            },
+                            {
+                                latitude: 44.2,
+                                longitude: -75
+                            },
+                            {
+                                latitude: 44.4,
+                                longitude: -75.2
+                            }
+                        ],
+                        stroke: {
+                            color: '#1B4C7E',
+                            weight: 2
+                        },
+                        editable: false,
+                        draggable: false,
+                        geodesic: false,
+                        visible: true,
+                        fill: {
+                            color: '#2466A8',
+                            opacity: 0.3
+                        }
+                    }
+                ]
             };
         });
     });
