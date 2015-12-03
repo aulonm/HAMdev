@@ -4,8 +4,7 @@
 (function (controllers) {
 
 
-    controllers.controller("mapsCtrl", ['$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'api', '$location',
-        function ($scope, uiGmapGoogleMapApi, uiGmapIsReady, api, $location) {
+    controllers.controller("mapsCtrl", function ($scope, uiGmapGoogleMapApi, uiGmapIsReady) {
             // Do stuff with your $scope.
             // Note: Some of the directives require at least something to be defined originally!
             // e.g. $scope.markers = []
@@ -105,6 +104,6 @@
                     ]
                 };
             });
-        }]);
+        });
 
 })(angular.module('mainControllers'));

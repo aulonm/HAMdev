@@ -14,9 +14,9 @@
     /* Define modules */
     var app = angular.module('main', ['ngRoute', 'mainControllers']);
 
-    app.config(['$httpProvider', function($http){
+    /*app.config(['$httpProvider', function($http){
         $http.defaults.headers.common['Authorization'] = 'admin:district'
-    }]);
+    }]);*/
 
 
     app.config(function(uiGmapGoogleMapApiProvider){
