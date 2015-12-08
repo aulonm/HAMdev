@@ -2,30 +2,28 @@
  * Created by aulon on 15.11.15.
  */
 
-(function(){
+(function(angular){
     'use strict';
 
     /* Lager main moduler, og saa sier vi at de mindre modulene skal ta ting fra disse,
     eller bygges videre paa disse*/
     angular.module('mainServices', ['ngResource']);
-    angular.module('mainControllers', ['mainServices']);
+
+    angular.module('mainControllers', ['mainServices', 'uiGmapgoogle-maps']);
 
     /* Define modules */
-    var app  = angular.module('main', ['ngRoute', 'mainControllers', 'uiGmapgoogle-maps']);
-    /* controller for google maps */
-    angular.controller('GoogleMapCtr', function($scope){
-        $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+    var app = angular.module('main', ['mainControllers']);
+
+    /*app.config(['$httpProvider', function($http){
+        $http.defaults.headers.common['Authorization'] = 'admin:district'
+    }]);*/
+
+
+    app.config(function(uiGmapGoogleMapApiProvider){
+        uiGmapGoogleMapApiProvider.configure({
+            v: '3.20',
+            libraries: 'weather, geometry, visualization'
+        });
     });
-    /* Her redirecter den til den sida som vi vil skal vises, fyller opp index.html fila */
-    app.config(['$routeProvider',
-        function($routeProvider){
-            $routeProvider.when('',{ // Hvor prOver du aa faa tak i stuff
-                templateUrl: 'URL' // Hvor ligger urlen
-                /* controller: */
-            }).otherwise({
-                redirectTo: 'URL' // Hvis ikke, redirect her
-            });
-        }
-    ]);
 
 })(angular);
