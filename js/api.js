@@ -42,6 +42,34 @@
 
         return {
 
+            // Gets the facilities
+            getFacilitiesOnLevel: function(level){
+              return $resource(
+                  $rootScope.API + '/api/organisationUnits',{
+                      level: level,
+                      fields: "id, name, coordinates, level, children, parent, shortName, description, code"
+                  },{
+                      'query':{
+                          isArray: false
+                      }
+                  }
+              );
+            },
+
+            // Gets specific organisation unit
+            getOrganisationUnit: function(id){
+                return $resource(
+                    $rootScope.API + '/api/organisationUnits/' + id, {
+                        fields: "id, name"
+                    }, {
+                        'query':{
+                            isArray: false
+                        }
+                    }
+                );
+            }
+
+
             // Different functions
             // getting organization units
             // saving units

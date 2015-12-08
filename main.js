@@ -14,9 +14,15 @@
     /* Define modules */
     var app = angular.module('main', ['mainControllers']);
 
-    /*app.config(['$httpProvider', function($http){
-        $http.defaults.headers.common['Authorization'] = 'admin:district'
-    }]);*/
+
+    /* Enable CORS */
+    app.config(['$httpProvider', function($httpProvider) {
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }]);
+
+    app.config(['$httpProvider', function($http){
+        $http.defaults.headers.common.Authorization = 'admin:district';
+    }]);
 
 
     app.config(function(uiGmapGoogleMapApiProvider){

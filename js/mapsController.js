@@ -4,6 +4,33 @@
 (function (controllers) {
     controllers.controller("mapsCtrl", ["apiService","$scope", "uiGmapGoogleMapApi", "uiGmapIsReady",
         function (apiService, $scope, uiGmapGoogleMapApi, uiGmapIsReady) {
+            init();
+            function init(){
+                var setMainMap = function(){
+                    $scope.map = {center: {latitude: 8.536426, longitude: -11.896692}, zoom: 7};
+                };
+                apiService.getFacilitiesOnLevel(2).get(function(result){
+                    $scope.facilities = result.organisationUnits;
+                    $scope.levelParent = $scope.facilities[0].parent;
+                    console.log($scope.facilities[0]);
+                    setMainMap();
+                })
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             // Do stuff with your $scope.
             // Note: Some of the directives require at least something to be defined originally!
             // e.g. $scope.markers = []
