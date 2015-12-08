@@ -7,7 +7,7 @@
     'use strict';
 
 
-    services.factory('api', function($q, $resource, $http, $rootScope){
+    services.factory("apiService", function($q, $resource, $http, $rootScope){
         // Get requests osv
         var xhttp = new XMLHttpRequest();
         xhttp.open("GET", "manifest.webapp", false);

@@ -21,10 +21,11 @@
     <script type="text/javascript" src="bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
 
     <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="js/api.js"></script>
     <script type="text/javascript" src="js/mapsController.js"></script>
 
 </head>
-<body ng-controller="mapsCtrl">
+<body >
 <nav class="navbar" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -34,7 +35,7 @@
 </nav>
 
 <!--Main container-->
-<div class="container">
+<div class="container"ng-controller="mapsCtrl">
     <!-- set columns used for the menu -->
 
     <!--This way it works with all kinds of resolutions-->

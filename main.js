@@ -2,7 +2,7 @@
  * Created by aulon on 15.11.15.
  */
 
-(function(){
+(function(angular){
     'use strict';
 
     /* Lager main moduler, og saa sier vi at de mindre modulene skal ta ting fra disse,
@@ -12,7 +12,7 @@
     angular.module('mainControllers', ['mainServices', 'uiGmapgoogle-maps']);
 
     /* Define modules */
-    var app = angular.module('main', ['ngRoute', 'mainControllers']);
+    var app = angular.module('main', ['mainControllers']);
 
     /*app.config(['$httpProvider', function($http){
         $http.defaults.headers.common['Authorization'] = 'admin:district'
