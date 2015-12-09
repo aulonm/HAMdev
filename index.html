@@ -129,7 +129,8 @@
             <ui-gmap-google-map center='map.center' zoom='map.zoom' options="options">
                 <ui-gmap-marker coords="'self'" icon="icon">
                 </ui-gmap-marker>
-                <ui-gmap-polygon ng-repeat="p in unitPolygons"
+                <ui-gmap-polygon static="true"
+                                 ng-repeat="p in unitPolygons"
                                  path="p.path"
                                  stroke="p.stroke"
                                  visible="p.visible"
