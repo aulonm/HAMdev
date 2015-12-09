@@ -2,31 +2,82 @@
  * Created by aulon on 11/22/2015.
  */
 (function (controllers) {
+    controllers.controller("mapsCtrl", ["apiService","$scope", "uiGmapGoogleMapApi", "uiGmapIsReady",
+        function (apiService, $scope, uiGmapGoogleMapApi, uiGmapIsReady) {
+            init();
+            function init(){
+                var setMainMap = function(){
+                    $scope.map = {center: {latitude: 8.536426, longitude: -11.896692}, zoom: 8};
+                };
+                apiService.getFacilitiesOnLevel(2).get(function(result){
+                    $scope.facilities = result.organisationUnits;
+                    $scope.levelParent = $scope.facilities[0].parent;
+                    console.log($scope.facilities[0]);
+                    polygonsOnMap();
+                    setMainMap();
+                })
+            }
+
+            function polygonsOnMap(){
+                $scope.unitPolygons = [];
+
+                function pushPolygonsToMap(id, facility){
+                    var coordinates = [];
+
+                    if(!facility.coordinates){
+                        return;
+                    }
+
+                    var geoData = JSON.parse(facility.coordinates)[0][0];
+
+                    for (var i = 0; i < geoData.length; i++){
+                        var x = geoData[i][0];
+                        var y = geoData[i][1];
+                        coordinates.push({latitude: y, longitude: x});
+                    }
+
+                    $scope.unitPolygons.push({
+                        id: id,
+                        path: coordinates,
+                        stroke: {
+                            color: '#6060FB',
+                            weight: 3
+                        },
+                        editable: true,
+                        draggable: false,
+                        geodesic: false,
+                        visible: true
+                    });
+                }
+                for (var id in $scope.facilities){
+                    var facility = $scope.facilities[id];
+                    pushPolygonsToMap(id, facility);
+                }
+            }
 
 
-    controllers.controller("mapsCtrl", function ($scope, uiGmapGoogleMapApi, uiGmapIsReady) {
+
+
+
+
+
+
+
+
+
+
+
+
+
             // Do stuff with your $scope.
             // Note: Some of the directives require at least something to be defined originally!
             // e.g. $scope.markers = []
 
             // uiGmapGoogleMapApi is a promise.
             // The "then" callback function provides the google.maps object.
-            uiGmapGoogleMapApi.then(function (maps) {
-                var baseOptions = {
-                    'maxZoom': 15,
-                    'minZoom': 4,
-                    'backgroundColor': '#b0d1d4',
-                    'panControl': false,
-                    'zoomControl': true,
-                    'draggable': true,
-                    'zoomControlOptions': {
-                        'position': 'RIGHT_TOP',
-                        'style`': 'SMALL'
-                    }
-                };
+            /*uiGmapGoogleMapApi.then(function (maps) {
                 $scope.map = {
-                    center: {latitude: 45, longitude: -74.5},
-                    options: baseOptions,
+                    center: {latitude: 8.536426, longitude:  -11.896692},
                     zoom: 8,
                     events: {
                         setCenter: function () {
@@ -39,11 +90,11 @@
                                     $scope.map.center = center;
                                 });
                             } else {
-                                /* We are not allowed to track location */
+                                /!* We are not allowed to track location *!/
                             }
                         }
                     },
-                    /* Dummy data for showing Markers and Polygons */
+                    /!* Dummy data for showing Markers and Polygons *!/
                     markers: [
                         {
                             id: 1,
@@ -103,7 +154,8 @@
                         }
                     ]
                 };
-            });
-        });
+            });*/
+        }]);
+
 
 })(angular.module('mainControllers'));

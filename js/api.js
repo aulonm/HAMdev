@@ -7,7 +7,7 @@
     'use strict';
 
 
-    services.factory('api', function($q, $resource, $http, $rootScope){
+    services.factory("apiService", function($q, $resource, $http, $rootScope){
         // Get requests osv
         var xhttp = new XMLHttpRequest();
         xhttp.open("GET", "manifest.webapp", false);
@@ -39,17 +39,35 @@
         // https://play.dhis2.org/demo/api/organisationUnits/OY7mYDATra3
         //
 
-        var factory = {};
-        var orgUnits = {};
-        orgUnits = $http.get("http://172.16.42.158:8082/api/organisationUnits.json");
-        factory.getOrgUnits = function(){
-            return orgUnits;
-        };
-        factory.postOrgUnit = function(unit){
-            orgUnits.push(unit);
-        };
-
         return {
+
+            // Gets the facilities
+            getFacilitiesOnLevel: function(level){
+              return $resource(
+                  $rootScope.API + '/api/organisationUnits',{
+                      level: level,
+                      fields: "id, name, coordinates, level, children, parent, shortName, description, code"
+                  },{
+                      'query':{
+                          isArray: false
+                      }
+                  }
+              );
+            },
+
+            // Gets specific organisation unit
+            getOrganisationUnit: function(id){
+                return $resource(
+                    $rootScope.API + '/api/organisationUnits/' + id, {
+                        fields: "id, name"
+                    }, {
+                        'query':{
+                            isArray: false
+                        }
+                    }
+                );
+            }
+
             // Different functions
             // getting organization units
             // saving units
