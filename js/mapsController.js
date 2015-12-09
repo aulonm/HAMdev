@@ -7,7 +7,7 @@
             init();
             function init(){
                 var setMainMap = function(){
-                    $scope.map = {center: {latitude: 8.536426, longitude: -11.896692}, zoom: 8};
+                    $scope.map = {center: apiService.currentMapCenter, zoom: 8};
                 };
                 apiService.getFacilitiesOnLevel(2).get(function(result){
                     $scope.facilities = result.organisationUnits;
@@ -54,6 +54,21 @@
                     pushPolygonsToMap(id, facility);
                 }
             }
+
+            $scope.setNewCenter = function() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var center = {
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude
+                        };
+                        apiService.currentMapCenter = center;
+                        init();
+                    });
+                } else {
+                    /* We are not allowed to track location */
+                }
+            };
 
 
 

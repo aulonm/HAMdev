@@ -41,6 +41,8 @@
 
         return {
 
+            currentMapCenter: {latitude: 8.536426, longitude: -11.896692},
+
             // Gets the facilities
             getFacilitiesOnLevel: function(level){
               return $resource(
