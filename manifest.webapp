@@ -1,6 +1,6 @@
 {
     "version": "0.1",
-    "name": "Organisation Units Manager",
+    "name": "HAMdev",
     "description": "An app that manages search, presentation and editing of organisation units",
     "launch_path": "index.html",
     "installs_allowed_from":["*"],
@@ -9,7 +9,7 @@
     },
     "developer": {
     "name": "Aulon Mujaj, Halvor Hølmebakk Mangseth, Magnus Hestvik",
-    "url": "http://localhost:8082/apps/Arkiv"
+    "url": "http://localhost:8082/HAMdev"
     },
     "default_locale": "en",
     "activities": {
