@@ -18,7 +18,6 @@
 
         // The database
         // https://play.dhis2.org/demo/api/organisationUnits
-
         // List of organisation units like this:
         //<organisationUnit lastUpdated="2014-11-25T09:37:54.322+0000" code="OU_651071" created="2012-02-17T15:54:39.987+0000" name="Adonkia CHP" id="Rp268JB6Ne4" href="https://play.dhis2.org/demo/api/organisationUnits/Rp268JB6Ne4"/>
         //Inside each unit, the information is like this:
@@ -40,8 +39,17 @@
         // https://play.dhis2.org/demo/api/organisationUnits/OY7mYDATra3
         //
 
-        return {
+        var factory = {};
+        var orgUnits = {};
+        orgUnits = $http.get("http://172.16.42.158:8082/api/organisationUnits.json");
+        factory.getOrgUnits = function(){
+            return orgUnits;
+        };
+        factory.postOrgUnit = function(unit){
+            orgUnits.push(unit);
+        };
 
+        return {
             // Different functions
             // getting organization units
             // saving units
