@@ -90,10 +90,17 @@
                 </div>
                 <div class="panel-group" id="accordion">
                     <!-- Vennesla -->
-                    <div class="panel panel-default">
+                    <div class="panel panel-default" ng-repeat="facility in facilities | orderBy: 'name' | filter:search:strict">
+                        <!--<div class="panel-heading">
+                            <h4 class="panel-title">
+                                <accordion id="accordion_{{$index+((currentPage-1)*20)+1}}" close-others="false">
+                                    <accordion-group heading="{{facility.name}}" is-open="facility.open"></accordion-group>
+                                </accordion>
+                            </h4>
+                        </div>-->
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Vennesla</a>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">{{facility.name}}</a>
                             </h4>
                         </div>
                         <div id="collapse1" class="panel-collapse collapse">
@@ -119,12 +126,17 @@
     </div>
     <div>
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 thumbnail">
-            <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-                <ui-gmap-marker ng-repeat="m in map.markers" coords="m" icon="m.icon" click="onMarkerClicked(m)" idKey="m.id" options="m.options">
+            <ui-gmap-google-map center='map.center' zoom='map.zoom' options="options">
+                <ui-gmap-marker coords="'self'" icon="icon">
                 </ui-gmap-marker>
-                <ui-gmap-polygon ng-repeat="p in map.polygons track by p.id" path="p.path" stroke="p.stroke" visible="p.visible"
-                                 geodesic="p.geodesic" fill="p.fill" fit="false" editable="false" draggable="false"
-                                 events="map.polygonEvents">
+                <ui-gmap-polygon ng-repeat="p in unitPolygons"
+                                 path="p.path"
+                                 stroke="p.stroke"
+                                 visible="p.visible"
+                                 geodesic="p.geodesic"
+                                 fill="p.fill"
+                                 editable="p.editable"
+                                 draggable="p.draggable">
                 </ui-gmap-polygon>
             </ui-gmap-google-map>
         </div>
