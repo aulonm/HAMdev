@@ -15,6 +15,7 @@
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 
     <script type="text/javascript" src="bower_components/lodash/lodash.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
@@ -88,10 +89,27 @@
                     <div class="panel-heading">
                         <h2 class="panel-title text-center">Add new</h2>
                     </div>
+                    <!-- ADD A DROPDOWN FOR WHAT WE WANT TO ADD, TO CHOOSE LEVEL AND SUCH-->
+                    <label for="select">Choose Level</label>
+                    <select class="form-control" id="select" >
+                        <option id="level1">Chiefdom</option>
+                        <option id="level2">District</option>
+                        <option id="level3">Facility</option>
+                        <option id="level4">National</option>
+                    </select>
                     <label for="newName">Name</label>
-                    <input type="text" class="form-control" id="newName" placeholder="Example: Vennesla">
-                    <label for="newName">Position</label>
-                    <input type="text" class="form-control" id="newPos" placeholder="Example: Vennesla">
+                    <input type="text" class="form-control" id="newName" ng-model="newUnit.name">
+                    <label for="newShortName">Short Name</label>
+                    <input type="text" class="form-control" id="newShortName" ng-model="newUnit.shortName">
+                    <div class="form-group">
+                        <label for="comment">Comment:</label>
+                        <textarea class="form-control" ng-model="newUnit.description" rows="5" id="comment"></textarea>
+                    </div>
+                    <label for="newCode">Code</label>
+                    <input type="text" class="form-control" id="newCode" ng-model="newUnit.code">
+                    <div class="panel-heading">
+                        <button class="btn-primary" ng-click="">Create Unit</button>
+                    </div>
                     <!-- Unsure which elements here. Examine DB output first. Maybe type should be a dropdown? -->
                 </div>
             </div>
@@ -100,16 +118,24 @@
                 <div class="panel-heading">
                     <h2 class="panel-title text-center">Results</h2>
                 </div>
-                <div class="panel-group" id="accordion">
-                    <!-- Vennesla -->
+                <uib-accordion close-others="oneAtATime">
+                    <uib-accordion-group heading="{{facility.name}}" ng-repeat="facility in facilities | orderBy: 'name' | filter:search:strict">
+                        <label for="newName">Name</label>
+                        <input type="text" class="form-control" id="newName" placeholder="{{facility.name}}">
+                        <label for="newShortName">Short Name</label>
+                        <input type="text" class="form-control" id="newShortName" placeholder="{{facility.shortName}}">
+                    </uib-accordion-group>
+                </uib-accordion>
+                <!--<div class="panel-group" id="accordion">
+                    &lt;!&ndash; Vennesla &ndash;&gt;
                     <div class="panel panel-default" ng-repeat="facility in facilities | orderBy: 'name' | filter:search:strict">
-                        <!--<div class="panel-heading">
+                        &lt;!&ndash;<div class="panel-heading">
                             <h4 class="panel-title">
                                 <accordion id="accordion_{{$index+((currentPage-1)*20)+1}}" close-others="false">
                                     <accordion-group heading="{{facility.name}}" is-open="facility.open"></accordion-group>
                                 </accordion>
                             </h4>
-                        </div>-->
+                        </div>&ndash;&gt;
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">{{facility.name}}</a>
@@ -117,7 +143,7 @@
                         </div>
                         <div id="collapse1" class="panel-collapse collapse">
                             <form class="panel-body">
-                                <!--<h5>Name</h5>-->
+                                &lt;!&ndash;<h5>Name</h5>&ndash;&gt;
                                 <div class="form-group">
                                     <label for="ResultName">Name</label>
                                     <input type="text" class="form-control" id="ResultName" value="Vennesla">
@@ -132,7 +158,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>

@@ -68,6 +68,16 @@
                         }
                     }
                 );
+            },
+
+            createUnit: function(){
+               return $resource(
+                   $rootScope.API + '/api/organisationUnits/', {
+
+                },{
+
+                }
+               );
             }
 
             // Different functions

@@ -9,7 +9,7 @@
     eller bygges videre paa disse*/
     angular.module('mainServices', ['ngResource']);
 
-    angular.module('mainControllers', ['mainServices', 'uiGmapgoogle-maps']);
+    angular.module('mainControllers', ['mainServices', 'uiGmapgoogle-maps', 'ui.bootstrap']);
 
     /* Define modules */
     var app = angular.module('main', ['mainControllers']);

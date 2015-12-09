@@ -4,6 +4,7 @@
 (function (controllers) {
     controllers.controller("mapsCtrl", ["apiService","$scope", "uiGmapGoogleMapApi", "uiGmapIsReady",
         function (apiService, $scope, uiGmapGoogleMapApi, uiGmapIsReady) {
+            $scope.oneAtATime = true;
             init();
             function init(){
                 var setMainMap = function(){
@@ -12,7 +13,7 @@
                 apiService.getFacilitiesOnLevel(2).get(function(result){
                     $scope.facilities = result.organisationUnits;
                     $scope.levelParent = $scope.facilities[0].parent;
-                    console.log($scope.facilities[0]);
+                    //console.log($scope.facilities[2].coordinates);
                     polygonsOnMap();
                     setMainMap();
                 })
@@ -23,18 +24,30 @@
 
                 function pushPolygonsToMap(id, facility){
                     var coordinates = [];
+                    //if(id == 2){
+                    //    console.log(id + "     " + facility.coordinates);
+                    //}
 
                     if(!facility.coordinates){
+                        //console.log("NOTHING HERE")
                         return;
                     }
 
                     var geoData = JSON.parse(facility.coordinates)[0][0];
+                    //if(id == 2){
+                    //    console.log(id + "     " + geoData);
+                    //}
+
 
                     for (var i = 0; i < geoData.length; i++){
                         var x = geoData[i][0];
                         var y = geoData[i][1];
                         coordinates.push({latitude: y, longitude: x});
-                    }
+
+                    }/*
+                    if(id == 2){
+                        console.log(id + "     " + coordinates);
+                    }*/
 
                     $scope.unitPolygons.push({
                         id: id,
@@ -53,6 +66,7 @@
                     var facility = $scope.facilities[id];
                     pushPolygonsToMap(id, facility);
                 }
+                //console.log($scope.unitPolygons)
             }
 
             $scope.setNewCenter = function() {
