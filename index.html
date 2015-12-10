@@ -155,7 +155,9 @@
     </div>
     <div>
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 thumbnail">
-            <ui-gmap-google-map center='map.center' zoom='map.zoom' options="options" >
+            <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events' >
+                <ui-gmap-marker ng-if="mapClicked" coords="customMarker.coords" idKey="customMarker.idKey">
+                </ui-gmap-marker>
                 <ui-gmap-polygon static="true"
                                  ng-repeat="p in unitPolygons"
                                  path="p.path"

@@ -16,6 +16,10 @@
  *          - Tbh I can't find out how to implement search functions by searching for names, only ID's. Can check this
  *            mot thoroughly at a later date.
  *
+ *  Things Done (Magnus):
+ *      - Click on map: Custom marker
+ *          - a $scope variable customMarker keeps track of a user-defined marker (I wanted to keep this separate
+ *            from the result markers). It gets updated either by clicking on the map, or by looking up user location.
  *
  *  If there are more things that I have not listed, then write them here
  *  Have you implemented one of them, then write which you have written, so that it is easier to coordinate!
@@ -26,8 +30,13 @@
     controllers.controller("mapsCtrl", ["apiService","$scope", "uiGmapGoogleMapApi", "uiGmapIsReady", '$location',
         function (apiService, $scope, uiGmapGoogleMapApi, uiGmapIsReady, $location) {
 
+            var vm = this;
+
             var currentMapCenter = {latitude: 8.536426, longitude: -11.896692};
             var currentMapZoom = 8;
+
+            $scope.mapClicked = false;
+            $scope.customMarker = { idKey: "001", coords: currentMapCenter};
 
             $scope.oneAtATime = true;
             $scope.level = 0;
@@ -60,7 +69,20 @@
             init();
             function init(){
                 var setMainMap = function(){
-                    $scope.map = {center: currentMapCenter, zoom: currentMapZoom};
+                    $scope.map = {
+                        center: currentMapCenter,
+                        zoom: currentMapZoom,
+                        events: {
+                            click: function (mapObject, eventName, originalEventArgs) {
+                                var e = originalEventArgs[0];
+                                $scope.customMarker.coords = { latitude: e.latLng.lat(), longitude: e.latLng.lng()};
+                                $scope.mapClicked = true;
+                                console.log("Map was clicked: "+$scope.mapClicked);
+                                console.log("Lat: "+$scope.customMarker.coords.latitude+" Long: "+$scope.customMarker.coords.longitude);
+                                init();
+                            }
+                        }
+                    };
                 };
                 apiService.getFacilitiesOnLevel(1).get(function(result){
                     $scope.facilities = result.organisationUnits;
@@ -133,6 +155,8 @@
             }
 
             $scope.setNewCenter = function() {
+                console.log("Map was clicked: "+$scope.mapClicked);
+                console.log("Lat: "+$scope.customMarker.coords.latitude+" Long: "+$scope.customMarker.coords.longitude);
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function (position) {
                         var center = {
@@ -140,6 +164,8 @@
                             longitude: position.coords.longitude
                         };
                         currentMapCenter = center;
+                        $scope.customMarker.coords = center;
+                        $scope.mapClicked = true;
                         init();
                     });
                 } else {
