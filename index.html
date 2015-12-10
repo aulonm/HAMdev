@@ -39,7 +39,7 @@
 <div class="container"ng-controller="mapsCtrl">
     <!-- set columns used for the menu -->
     <!--This way it works with all kinds of resolutions-->
-    <div class="col-lg-4 col-md-4 col-sm-4 text-center thumbnail">
+    <div class="col-lg-4 col-md-4 col-sm-4 text-center thumbnail" id="menu">
         <h2>Menu</h2>
         <!-- Find me button-->
         <button class="btn btn-primary" ng-click="setNewCenter()">
@@ -118,9 +118,9 @@
                 <uib-accordion close-others="oneAtATime">
                     <uib-accordion-group heading="{{facility.name}}" ng-repeat="facility in facilities | orderBy: 'name' | filter:search:strict">
                         <label for="newName">Name</label>
-                        <input type="text" class="form-control" id="newName" placeholder="{{facility.name}}">
+                        <input type="text" class="form-control" id="newName" ng-value="facility.name">
                         <label for="newShortName">Short Name</label>
-                        <input type="text" class="form-control" id="newShortName" placeholder="{{facility.shortName}}">
+                        <input type="text" class="form-control" id="newShortName" ng-value="facility.shortName">
                     </uib-accordion-group>
                 </uib-accordion>
                 <!--<div class="panel-group" id="accordion">
