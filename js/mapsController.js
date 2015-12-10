@@ -4,7 +4,7 @@
  *  Tings not done:
  *      - Create a new unit
  *          - Is somewhat done, missing coordinates though. Think of waiting until markers are done, and then
- *          try it out
+ *          try it out (Magnurh coordinates are added. Not tested)
  *          - Not tested
  *      - Update a unit
  *          -
@@ -185,6 +185,7 @@
                     shortName: $scope.newUnit.shortName,
                     description: $scope.newUnit.description,
                     code: $scope.newUnit.newCode,
+                    coords: { latitude: $scope.newUnit.latitude, longitude: $scope.newUnit.longitude},
                     parent: $scope.newUnit.newParent
                 };
                 apiService.createUnit().save(unit, function(){

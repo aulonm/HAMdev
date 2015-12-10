@@ -98,6 +98,12 @@
                         </div>
                         <label for="newCode">Code</label>
                         <input type="text" class="form-control" id="newCode" ng-model="newUnit.code">
+                        <label for="newLatitude">Latitude</label>
+                        <input class="form-control" id="newLatitude" ng-model="newUnit.latitude"
+                               type="text" ng-value="customMarker.coords.latitude">
+                        <label for="newLongitude">Longitude</label>
+                        <input class="form-control" id="newLongitude" ng-model="newUnit.longitude"
+                               type="text" ng-value="customMarker.coords.longitude">
                         <div class="panel-heading">
                             <button class="btn-primary" type="submit" >Create Unit</button>
                         </div>
