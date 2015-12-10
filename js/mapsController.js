@@ -4,10 +4,14 @@
 (function (controllers) {
     controllers.controller("mapsCtrl", ["apiService","$scope", "uiGmapGoogleMapApi", "uiGmapIsReady",
         function (apiService, $scope, uiGmapGoogleMapApi, uiGmapIsReady) {
+
+            var currentMapCenter = {latitude: 8.536426, longitude: -11.896692};
+            var currentMapZoom = 8;
+
             init();
             function init(){
                 var setMainMap = function(){
-                    $scope.map = {center: apiService.currentMapCenter, zoom: 8};
+                    $scope.map = {center: currentMapCenter, zoom: currentMapZoom};
                 };
                 apiService.getFacilitiesOnLevel(2).get(function(result){
                     $scope.facilities = result.organisationUnits;
@@ -62,7 +66,7 @@
                             latitude: position.coords.latitude,
                             longitude: position.coords.longitude
                         };
-                        apiService.currentMapCenter = center;
+                        currentMapCenter = center;
                         init();
                     });
                 } else {
