@@ -41,6 +41,9 @@
 
         return {
 
+            // HOW THIS SHIT WORKS!
+            //https://docs.angularjs.org/api/ngResource/service/$resource
+
             // Gets the facilities
             getFacilitiesOnLevel: function(level){
               return $resource(
@@ -66,6 +69,12 @@
                         }
                     }
                 );
+            },
+
+            createUnit: function(){
+               return $resource(
+                   $rootScope.API + '/api/organisationUnits/', {},{}
+               );
             }
 
             // Different functions
