@@ -20,3 +20,28 @@ http://localhost:8082/api/schemas/organisationUnit.json
     xmlhttp.setRequestHeader("Content-type", "application/json");
     xmlhttp.send(JSON.stringify(x);
 
+    /Aulon: Alt det under går utifra at objektet allerede er endret og klar for å
+    bli sendt til databasen for oppdatering:
+    wtf, hvorfor skriver jeg på engelsk
+    How it may be less code to do the same thing:
+    https://www.dhis2.org/doc/snapshot/en/user/html/ch32s08.html
+    Here it shows how we can easily update a unit i.e.
+    And then we could use the $resource we are already using, to send a PUT to the database with the updated facility info
+    Check angularjs for the PUT info:
+    https://docs.angularjs.org/api/ngResource/service/$resource
+    Under "Creating a custom 'PUT' request"
+    We would need the facility ID to update it though, i følge dhis2 dokumentasjonen
+    Så kan vi bare kalle på updateUnit(id til facility (eller no),
+    og så kjøre en update(facility):
+    updateUnit(id).update(facility)
+    noe sånt
+    Og i apiet kan det være
+    updateUnit: function(id){
+        return $resource = {
+            $rootScope.API + '/api/organisationUnits/' + id, {
+                update: "PUT"
+            }, {}
+        };
+    };
+
+    Lettuce discuss this tumurruv
