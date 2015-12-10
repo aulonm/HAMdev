@@ -43,6 +43,9 @@
 
             currentMapCenter: {latitude: 8.536426, longitude: -11.896692},
 
+            // HOW THIS SHIT WORKS!
+            //https://docs.angularjs.org/api/ngResource/service/$resource
+
             // Gets the facilities
             getFacilitiesOnLevel: function(level){
               return $resource(
@@ -72,11 +75,7 @@
 
             createUnit: function(){
                return $resource(
-                   $rootScope.API + '/api/organisationUnits/', {
-
-                },{
-
-                }
+                   $rootScope.API + '/api/organisationUnits/', {},{}
                );
             }
 

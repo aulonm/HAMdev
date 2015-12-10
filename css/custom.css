@@ -2,6 +2,12 @@
     background-color: #F9F9F9;
 }
 
+.ng-invalid.ng-dirty{
+    border-color: #fa787e;
+}
+.ng-valid.ng-dirty{
+    border-color: #78FA89;
+}
 .btn-primary {
     background-color: #1D5287;
     border-color: #123354;
@@ -29,4 +35,6 @@
     width: 100%;
     height: 598px;
 }
+
+
 

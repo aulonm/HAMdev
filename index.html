@@ -59,58 +59,49 @@
                     </div>
                     <input type="text" class="form-control" placeholder="Example: Vennesla" ng-model="search.name">
                 </div>
-                <!--
-                <div class="form-group">
-                    <div class="checkbox-inline">
-                        <label><input type="checkbox" value="" id="CheckboxCounty">County</label>
-                    </div>
-                    <div class="checkbox-inline">
-                        <label><input type="checkbox" value="" id="CheckboxCity">City</label>
-                    </div>
-                    <div class="checkbox-inline">
-                        <label><input type="checkbox" value="" id="CheckboxArea">Area</label>
-                    </div>
-                </div>
-                -->
                 <div class="form-group">
                     <label for="select1">Search level</label>
-                    <select class="form-control" id="select1">
-                        <option id="level0">All</option>
-                        <option id="level1">Chiefdom</option>
-                        <option id="level2">District</option>
-                        <option id="level3">Facility</option>
-                        <option id="level4">National</option>
+                    <select class="form-control" id="select1" ng-model="level" >
+                        <option value="0">All</option>
+                        <option value="1">Chiefdom</option>
+                        <option value="2">District</option>
+                        <option value="3">Facility</option>
+                        <option value="4">National</option>
                     </select>
                 </div>
             </div>
             <!-- Add new -->
             <div class="thumbnail">
-                <div class="form-group">
+                <div class="form-group" >
                     <div class="panel-heading">
-                        <h2 class="panel-title text-center">Add new</h2>
+                        <!-- Denne er litt for stor atm. -->
+                        <h2 data-toggle="collapse" href="#collapse1">Add new</h2>
                     </div>
-                    <!-- ADD A DROPDOWN FOR WHAT WE WANT TO ADD, TO CHOOSE LEVEL AND SUCH-->
-                    <label for="select">Choose Level</label>
-                    <select class="form-control" id="select" >
-                        <option id="level1">Chiefdom</option>
-                        <option id="level2">District</option>
-                        <option id="level3">Facility</option>
-                        <option id="level4">National</option>
-                    </select>
-                    <label for="newName">Name</label>
-                    <input type="text" class="form-control" id="newName" ng-model="newUnit.name">
-                    <label for="newShortName">Short Name</label>
-                    <input type="text" class="form-control" id="newShortName" ng-model="newUnit.shortName">
-                    <div class="form-group">
-                        <label for="comment">Comment:</label>
-                        <textarea class="form-control" ng-model="newUnit.description" rows="5" id="comment"></textarea>
-                    </div>
-                    <label for="newCode">Code</label>
-                    <input type="text" class="form-control" id="newCode" ng-model="newUnit.code">
-                    <div class="panel-heading">
-                        <button class="btn-primary" ng-click="">Create Unit</button>
-                    </div>
-                    <!-- Unsure which elements here. Examine DB output first. Maybe type should be a dropdown? -->
+                    <!--ng-submit er for knappen lenger nede-->
+                    <form name="newUnitForm"
+                          ng-submit="newUnitForm.$valid && saveNewUnit()" novalidate
+                          id="collapse1" class="panel-collapse collapse">
+                        <label for="select">Choose Parent</label>
+                        <select class="form-control" id="select" ng-model="newUnit.parent" required > <!--Required -->
+                            <option value="1">Chiefdom</option>
+                            <option value="2">District</option>
+                            <option value="3">Facility</option>
+                            <option value="4">National</option>
+                        </select>
+                        <label for="newName">Name</label>
+                        <input type="text" class="form-control" id="newName" ng-model="newUnit.name" required>
+                        <label for="newShortName">Short Name</label>
+                        <input type="text" class="form-control" id="newShortName" ng-model="newUnit.shortName" required>
+                        <div class="form-group">
+                            <label for="comment">Description:</label>
+                            <textarea class="form-control" ng-model="newUnit.description" rows="5" id="comment"></textarea>
+                        </div>
+                        <label for="newCode">Code</label>
+                        <input type="text" class="form-control" id="newCode" ng-model="newUnit.code">
+                        <div class="panel-heading">
+                            <button class="btn-primary" type="submit" >Create Unit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <!-- Results -->
@@ -164,9 +155,7 @@
     </div>
     <div>
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 thumbnail">
-            <ui-gmap-google-map center='map.center' zoom='map.zoom' options="options">
-                <ui-gmap-marker coords="'self'" icon="icon">
-                </ui-gmap-marker>
+            <ui-gmap-google-map center='map.center' zoom='map.zoom' options="options" >
                 <ui-gmap-polygon static="true"
                                  ng-repeat="p in unitPolygons"
                                  path="p.path"
