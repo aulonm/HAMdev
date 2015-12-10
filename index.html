@@ -164,6 +164,11 @@
             <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events' >
                 <ui-gmap-marker ng-if="mapClicked" coords="customMarker.coords" idKey="customMarker.idKey">
                 </ui-gmap-marker>
+                <ui-gmap-markers ng-if="facilityMarkersReady"
+                                 models="unitMarkers"
+                                 coords="'coords'"
+                                 idKey="m.id">
+                </ui-gmap-markers>
                 <ui-gmap-polygon static="true"
                                  ng-repeat="p in unitPolygons"
                                  path="p.path"

@@ -35,11 +35,13 @@
             var currentMapCenter = {latitude: 8.536426, longitude: -11.896692};
             var currentMapZoom = 8;
 
+            $scope.facilityMarkersReady = false;
+
             $scope.mapClicked = false;
             $scope.customMarker = { idKey: "001", coords: {}};
 
             $scope.oneAtATime = true;
-            $scope.level = 0;
+            $scope.level = 1;
 
 
             // $watch brukes som en slags while-loop som sjekker kontinuerlig
@@ -58,6 +60,9 @@
                             // the others are getting polygons and such, while level 4 doesnt have that
                             // It only has coordinates as points, maybe make a new function in api.js
                             // that gets this one specific level?
+                            $scope.facilities = result.organisationUnits;
+                            markersOnMap();
+                            $scope.facilityMarkersReady = true;
                             return;
                         }
                         $scope.facilities = result.organisationUnits;
@@ -84,7 +89,7 @@
                         }
                     };
                 };
-                apiService.getFacilitiesOnLevel(1).get(function(result){
+                apiService.getFacilitiesOnLevel($scope.level).get(function(result){
                     $scope.facilities = result.organisationUnits;
                     //$scope.levelParent = $scope.facilities[0].parent;
                     //console.log($scope.facilities[2].coordinates);
@@ -93,6 +98,36 @@
                 })
             }
 
+            function markersOnMap(){
+                $scope.unitMarkers = [];
+                if ($scope.level != 4) return;
+
+                function pushMarkersToMap(id, facility){
+
+                    if(!facility.coordinates){
+                        console.log("No coordinates available");
+                        return;
+                    }
+                    console.log("Coordinates:");
+                    var geoData = JSON.parse(facility.coordinates);
+                    console.log(facility.DisplayName);
+                    console.log(geoData);
+
+                    $scope.unitMarkers.push({
+                        id: id,
+                        coords: {
+                            latitude: geoData[1],
+                            longitude: geoData[0]
+                        }
+                    });
+
+                }
+                for (id in $scope.facilities){
+                    var facility = $scope.facilities[id];
+                    pushMarkersToMap(id, facility);
+                }
+
+            }
 
             function polygonsOnMap(){
                 // All the polygons are here
