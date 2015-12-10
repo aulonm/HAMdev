@@ -39,7 +39,7 @@
 <div class="container"ng-controller="mapsCtrl">
     <!-- set columns used for the menu -->
     <!--This way it works with all kinds of resolutions-->
-    <div class="col-lg-4 col-md-4 col-sm-4 text-center thumbnail">
+    <div class="col-lg-4 col-md-4 col-sm-4 text-center thumbnail" id="menu">
         <h2>Menu</h2>
         <!-- Find me button-->
         <button class="btn btn-primary" ng-click="setNewCenter()">
@@ -63,10 +63,10 @@
                     <label for="select1">Search level</label>
                     <select class="form-control" id="select1" ng-model="level" >
                         <option value="0">All</option>
-                        <option value="1">Chiefdom</option>
+                        <option value="1">National</option>
                         <option value="2">District</option>
-                        <option value="3">Facility</option>
-                        <option value="4">National</option>
+                        <option value="3">Chiefdom</option>
+                        <option value="4">Facility</option>
                     </select>
                 </div>
             </div>
@@ -83,10 +83,10 @@
                           id="collapse1" class="panel-collapse collapse">
                         <label for="select">Choose Parent</label>
                         <select class="form-control" id="select" ng-model="newUnit.parent" required > <!--Required -->
-                            <option value="1">Chiefdom</option>
+                            <option value="1">National</option>
                             <option value="2">District</option>
-                            <option value="3">Facility</option>
-                            <option value="4">National</option>
+                            <option value="3">Chiefdom</option>
+                            <option value="4">Facility</option>
                         </select>
                         <label for="newName">Name</label>
                         <input type="text" class="form-control" id="newName" ng-model="newUnit.name" required>
@@ -118,9 +118,9 @@
                 <uib-accordion close-others="oneAtATime">
                     <uib-accordion-group heading="{{facility.name}}" ng-repeat="facility in facilities | orderBy: 'name' | filter:search:strict">
                         <label for="newName">Name</label>
-                        <input type="text" class="form-control" id="newName" placeholder="{{facility.name}}">
+                        <input type="text" class="form-control" id="newName" ng-value="facility.name">
                         <label for="newShortName">Short Name</label>
-                        <input type="text" class="form-control" id="newShortName" placeholder="{{facility.shortName}}">
+                        <input type="text" class="form-control" id="newShortName" ng-value="facility.shortName">
                     </uib-accordion-group>
                 </uib-accordion>
                 <!--<div class="panel-group" id="accordion">

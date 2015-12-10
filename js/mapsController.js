@@ -36,7 +36,7 @@
             var currentMapZoom = 8;
 
             $scope.mapClicked = false;
-            $scope.customMarker = { idKey: "001", coords: currentMapCenter};
+            $scope.customMarker = { idKey: "001", coords: {}};
 
             $scope.oneAtATime = true;
             $scope.level = 0;
