@@ -1,0 +1,22 @@
+To retrieve OrganisationUnits, we can use the filters for this.
+ilike looks good, since it's case insensitive and matches anywhere in name string.
+http://dhis2.github.io/dhis2-docs/master/en/developer/html/ch01s07.html
+Eksempel: http://localhost:8082/api/organisationUnits.json?filter=name:ilike:panderu%20MCHP (search for "panderu MCHP")
+
+Det er tre felt som er obligatoriske når vi skal lagre en ny organisationUnit, ref:
+http://localhost:8082/api/schemas/organisationUnit.json
+    openingDate
+    name
+    shortName
+
+    vi må sende en POST. Hvis vi bruker XMLHttpRequest() igjen må vi sette content-type. Her er eksempel på json:
+    xhttp.setRequestHeader("Content-type", "application/json");
+
+    Noe a la:
+    // here create the json object x
+    x = { name:givenName, shortName:givenShortName, openingDate:new Date(); };
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", $rootscope.API + '/api/organisationUnits'); // usikker paa om vi trenger ekstra backslash her
+    xmlhttp.setRequestHeader("Content-type", "application/json");
+    xmlhttp.send(JSON.stringify(x);
+
