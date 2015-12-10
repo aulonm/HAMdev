@@ -47,7 +47,7 @@
             // informasjon :)
             // Ser så hacky ut at jeg blir kvalm
             $scope.$watch('level', function(){
-                if ($scope.leve == 0){
+                if ($scope.level == 0){
                     // Do we want to get everything here?
                     // Like every single entity from the database (about 1300 entities..)
                 }else{
