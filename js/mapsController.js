@@ -34,9 +34,9 @@
 
             var currentMapCenter = {latitude: 8.536426, longitude: -11.896692};
             var currentMapZoom = 8;
-
             $scope.facilityMarkersReady = false;
 
+            $scope.legallyCreateCustomMarker = false;
             $scope.mapClicked = false;
             $scope.customMarker = { idKey: "001", coords: {}};
 
@@ -52,7 +52,7 @@
                 console.log("new search")
                 apiService.getFacilities($scope.searchName, $scope.level).get(function(result) {
                     $scope.facilities = result.organisationUnits;
-                    console.log("elements in new results = " + result.length.toString());
+                    //console.log("elements in new results = " + result.length.toString());
                     if($scope.level == 2 || $scope.level == 3) {
                         polygonsOnMap();
                     }
@@ -70,15 +70,17 @@
                         zoom: currentMapZoom,
                         events: {
                             click: function (mapObject, eventName, originalEventArgs) {
-                                var e = originalEventArgs[0];
-                                $scope.customMarker.coords = { latitude: e.latLng.lat(), longitude: e.latLng.lng()};
-                                $scope.mapClicked = true;
-                                console.log("Map was clicked: "+$scope.mapClicked);
-                                console.log("Lat: "+$scope.customMarker.coords.latitude+" Long: "+$scope.customMarker.coords.longitude);
+                                if ($scope.legallyCreateCustomMarker) {
+                                    var e = originalEventArgs[0];
+                                    $scope.customMarker.coords = {latitude: e.latLng.lat(), longitude: e.latLng.lng()};
+                                    $scope.mapClicked = true;
+                                    console.log("Map was clicked: " + $scope.mapClicked);
+                                    console.log("Lat: " + $scope.customMarker.coords.latitude + " Long: " + $scope.customMarker.coords.longitude);
 
-                                //magnurh: WTF - hvorfor får dette det til å fungere?????????
-                                // Her henter vi data fra server - gjør at kartet lastes med den nye markeren
-                                apiService.makeMapLoad().get();
+                                    //magnurh: WTF - hvorfor får dette det til å fungere?????????
+                                    // Her henter vi data fra server - gjør at kartet lastes med den nye markeren
+                                    apiService.makeMapLoad().get();
+                                }
                             }
                         }
                     };
