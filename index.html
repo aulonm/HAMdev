@@ -83,13 +83,15 @@
                     <form name="newUnitForm"
                           ng-submit="newUnitForm.$valid && saveNewUnit()" novalidate
                           id="collapse1" class="panel-collapse collapse">
-                        <label for="select">Choose Parent</label>
-                        <select class="form-control" id="select" ng-model="newUnit.parent" required > <!--Required -->
+                        <label for="select">Choose Level</label>
+                        <select class="form-control" id="select" ng-model="newUnit.level" required > <!--Required -->
                             <option value="1">National</option>
                             <option value="2">District</option>
                             <option value="3">Chiefdom</option>
                             <option value="4">Facility</option>
                         </select>
+                        <label for="newCode">Parent ID</label>
+                        <input type="text" class="form-control" id="newParentId" ng-model="newUnit.parentId" required>
                         <label for="newName">Name</label>
                         <input type="text" class="form-control" id="newName" ng-model="newUnit.name" required>
                         <label for="newShortName">Short Name</label>

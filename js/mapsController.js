@@ -225,16 +225,20 @@
 
                 console.log($scope.newUnit.latitude);
                 console.log($scope.newUnit.longitude);
-                console.log($scope.newUnit.newParent);
+                console.log($scope.newUnit.level);
+                console.log($scope.newUnit.code);
+                console.log($scope.newUnit.parentId);
 
+                // coordinates are not saved properly
                 var unit = {
                     name: $scope.newUnit.name,
                     shortName: $scope.newUnit.shortName,
                     description: $scope.newUnit.description,
-                    code: $scope.newUnit.newCode,
-                    coords: { latitude: newUnitLatitude, longitude: newUnitLongitude},
-                    level: $scope.newUnit.newParent,
-                    openingDate: new Date()
+                    code: $scope.newUnit.code,
+                    coords: [parseInt(newUnitLongitude), parseInt(newUnitLatitude)],
+                    level: parseInt($scope.newUnit.level),
+                    openingDate: new Date(),
+                    parent: { id: $scope.newUnit.parentId }
                 };
                 console.log(unit);
                 apiService.createUnit().save(unit, function(){
