@@ -48,7 +48,7 @@
             getFacilities: function(name, level){
                 //console.log("getFacilities with name " + name);
                 var filters = ""; // used to apply filters to the search, from DHIS api 1.7
-                if(name != "") {
+                if(name != "" && name != null) {
                     filters += "&filter=name:ilike:" + name;
                 }
                 if(level != 0) {
