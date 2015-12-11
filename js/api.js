@@ -71,7 +71,6 @@
                );
             },
 
-            //magnurh: WTF - (se
             makeMapLoad: function(){
                 return $resource(
                     $rootScope.API + '/api/organisationUnits/', {},{}
