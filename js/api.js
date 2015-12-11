@@ -85,12 +85,6 @@
             //    );
             //},
 
-            getFacilities: function(name, level) {
-                if(name == "") {
-
-                }
-            }
-
             createUnit: function(){
                return $resource(
                    $rootScope.API + '/api/organisationUnits/', {},{}
