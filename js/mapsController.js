@@ -95,12 +95,11 @@
                 function pushMarkersToMap(id, facility){
 
                     if(!facility.coordinates){
-                        console.log("No coordinates available");
+                        console.log("No coordinates available for "+id);
                         return;
                     }
-                    console.log("Coordinates:");
+                    console.log("Coordinates for "+id+":");
                     var geoData = JSON.parse(facility.coordinates);
-                    console.log(facility.DisplayName);
                     console.log(geoData);
 
                     $scope.unitMarkers.push({
@@ -116,7 +115,7 @@
                     var facility = $scope.facilities[id];
                     pushMarkersToMap(id, facility);
                 }
-
+                $scope.facilityMarkersReady = true;
             }
 
             function polygonsOnMap(){
