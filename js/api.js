@@ -73,6 +73,14 @@
                );
             },
 
+            updateUnit: function(id){
+                return $resource(
+                        $rootScope.API + '/api/organisationUnits/' + id, {
+                            update: "PUT"
+                        }, {}
+                );
+            },
+
             makeMapLoad: function(){
                 return $resource(
                     $rootScope.API + '/api/organisationUnits/', {},{}
