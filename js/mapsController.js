@@ -58,7 +58,7 @@
                         markersOnMap();
                     }
                 });
-            }
+            };
 
             init();
             function init(){
