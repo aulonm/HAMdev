@@ -78,6 +78,7 @@
                         }
                     };
                 };
+                setMainMap();
             }
 
             function markersOnMap(){
