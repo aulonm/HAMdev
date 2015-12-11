@@ -75,9 +75,7 @@
 
             updateUnit: function(id){
                 return $resource(
-                        $rootScope.API + '/api/organisationUnits/' + id, {
-                            update: "PUT"
-                        }, {}
+                        $rootScope.API + '/api/organisationUnits/' + id, {},{}
                 );
             },
 
@@ -85,7 +83,7 @@
                 return $resource(
                     $rootScope.API + '/api/organisationUnits/', {},{}
                 );
-            }
+            },
 
             // Different functions
             // getting organization units

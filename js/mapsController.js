@@ -236,9 +236,17 @@
                 });
             };
 
-            $scope.updateUnit = function(id, name, shortName) {
-                console.log("updateUnit :\n\tid: " + id + "\n\tname: " + name + "\n\tshortName: " + shortName)
-            }
+            $scope.updateUnit = function(newId, newName, newShortName) {
+                console.log("updateUnit :\n\tid: " + newId + "\n\tname: " + newName + "\n\tshortName: " + newShortName);
+                var unit = {
+                    id: newId,
+                    name: newName,
+                    shortName: newShortName
+                }
+                apiService.createUnit().save(unit, function(){
+                    $location.path('/');
+                });
+            };
 
 
 
