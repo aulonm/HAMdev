@@ -44,18 +44,31 @@
             // HOW THIS SHIT WORKS!
             //https://docs.angularjs.org/api/ngResource/service/$resource
 
-            // Gets the facilities
+            // Gets the facilities, if 0 (all) get all.
             getFacilitiesOnLevel: function(level){
-              return $resource(
-                  $rootScope.API + '/api/organisationUnits',{
-                      level: level,
-                      fields: "id, name, coordinates, level, children, parent, shortName, description, code"
-                  },{
-                      'query':{
-                          isArray: false
+              if(level == 0) {
+                  return $resource(
+                      //$rootScope.API + '/api/organisationUnits', {
+                      $rootScope.API + '/api/metadata?assumeTrue=false&organisationUnits=true', {
+                          fields: "id, name, coordinates, level, children, parent, shortName, description, code"
+                      }, {
+                          'query': {
+                              isArray: false
+                          }
                       }
-                  }
-              );
+                  );
+              } else {
+                  return $resource(
+                      $rootScope.API + '/api/metadata?assumeTrue=false&organisationUnits=true', {
+                          level: level,
+                          fields: "id, name, coordinates, level, children, parent, shortName, description, code"
+                      }, {
+                          'query': {
+                              isArray: false
+                          }
+                      }
+                  );
+              }
             },
 
             // Gets specific organisation unit

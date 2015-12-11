@@ -49,10 +49,10 @@
             // informasjon :)
             // Ser så hacky ut at jeg blir kvalm
             $scope.$watch('level', function(){
-                if ($scope.level == 0){
-                    // Do we want to get everything here?
-                    // Like every single entity from the database (about 1300 entities..)
-                }else{
+                //if ($scope.level == 0){
+                //    // Do we want to get everything here?
+                //    // Like every single entity from the database (about 1300 entities..)
+                //}else{
                     apiService.getFacilitiesOnLevel($scope.level).get(function(result){
                         if($scope.level == 4){
                             // THIS IS FOR THE LAST LEVEL, MAYBE PLOT ALL THE MARKERS? NOT SURE
@@ -66,9 +66,11 @@
                             return;
                         }
                         $scope.facilities = result.organisationUnits;
-                        polygonsOnMap();
+                        if($scope.level != 0) {
+                            polygonsOnMap();
+                        }
                     });
-                }
+                //}
             });
 
             init();
