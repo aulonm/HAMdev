@@ -49,10 +49,10 @@
             // informasjon :)
             // Ser så hacky ut at jeg blir kvalm
             $scope.search = function(){
-                console.log("new search")
+                //console.log("new search, name: " + $scope.searchName)
                 apiService.getFacilities($scope.searchName, $scope.level).get(function(result) {
                     $scope.facilities = result.organisationUnits;
-                    //console.log("elements in new results = " + result.length.toString());
+                    //console.log(result.organisationUnits);
                     if($scope.level == 2 || $scope.level == 3) {
                         polygonsOnMap();
                     }

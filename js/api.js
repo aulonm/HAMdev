@@ -46,16 +46,18 @@
 
             // gets facilities
             getFacilities: function(name, level){
+                //console.log("getFacilities with name " + name);
                 var filters = ""; // used to apply filters to the search, from DHIS api 1.7
                 if(name != "") {
                     filters += "&filter=name:ilike:" + name;
                 }
                 if(level != 0) {
-                    filters += "&filter=level:eq:" + level.toString();
+                    filters += "&filter=level:eq:" + level;
                 }
-
+                console.log($rootScope.API + '/api/organisationUnits?paging=false' + filters);
                 return $resource(
-                    $rootScope.API + '/api/metadata?assumeTrue=false&organisationUnits=true' + filters, {
+                    $rootScope.API + '/api/organisationUnits?paging=false:filter', {
+                        filter: filters,
                         fields: "id, name, coordinates, level, children, parent, shortName, description, code"
                     }, {
                         'query': {
