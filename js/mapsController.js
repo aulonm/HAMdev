@@ -49,7 +49,7 @@
             // informasjon :)
             // Ser så hacky ut at jeg blir kvalm
             $scope.search = function(){
-                //console.log("new search, name: " + $scope.searchName)
+                console.log("new search, name: " + $scope.searchName)
                 apiService.getFacilities($scope.searchName, $scope.level).get(function(result) {
                     $scope.facilities = result.organisationUnits;
                     //console.log(result.organisationUnits);
@@ -229,6 +229,9 @@
                 });
             };
 
+            $scope.updateUnit = function(id, name, shortName) {
+                console.log("updateUnit :\n\tid: " + id + "\n\tname: " + name + "\n\tshortName: " + shortName)
+            }
 
 
 
