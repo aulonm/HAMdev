@@ -100,13 +100,20 @@
                     }
                     console.log("Coordinates for "+id+":");
                     var geoData = JSON.parse(facility.coordinates);
+                    console.log(facility.name);
                     console.log(geoData);
 
                     $scope.unitMarkers.push({
                         id: id,
+                        name: facility.name,
                         coords: {
                             latitude: geoData[1],
                             longitude: geoData[0]
+                        },
+                        options: {
+                            labelContent: facility.shortName,
+                            labelClass: 'marker-labels',
+                            labelAnchor: "28 0"
                         }
                     });
 
