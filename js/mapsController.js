@@ -211,14 +211,19 @@
             // database
             // NOT TRIED LOL
             $scope.saveNewUnit = function(){
+                console.log($scope.newUnit.latitude);
+                console.log($scope.newUnit.longitude);
+                console.log($scope.newUnit.newParent);
                 var unit = {
                     name: $scope.newUnit.name,
                     shortName: $scope.newUnit.shortName,
                     description: $scope.newUnit.description,
                     code: $scope.newUnit.newCode,
                     coords: { latitude: $scope.newUnit.latitude, longitude: $scope.newUnit.longitude},
-                    parent: $scope.newUnit.newParent
+                    level: $scope.newUnit.newParent,
+                    openingDate: new Date()
                 };
+                console.log(unit);
                 apiService.createUnit().save(unit, function(){
                     $location.path('/');
                 });
