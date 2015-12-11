@@ -78,13 +78,6 @@
                         }
                     };
                 };
-                apiService.getFacilitiesOnLevel($scope.level).get(function(result){
-                    $scope.facilities = result.organisationUnits;
-                    //$scope.levelParent = $scope.facilities[0].parent;
-                    //console.log($scope.facilities[2].coordinates);
-                    //polygonsOnMap();
-                    setMainMap();
-                })
             }
 
             function markersOnMap(){
