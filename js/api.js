@@ -44,46 +44,26 @@
             // HOW THIS SHIT WORKS!
             //https://docs.angularjs.org/api/ngResource/service/$resource
 
-            // Gets the facilities, if 0 (all) get all.
-            getFacilitiesOnLevel: function(level){
-              if(level == 0) {
-                  return $resource(
-                      //$rootScope.API + '/api/organisationUnits', {
-                      $rootScope.API + '/api/metadata?assumeTrue=false&organisationUnits=true', {
-                          fields: "id, name, coordinates, level, children, parent, shortName, description, code"
-                      }, {
-                          'query': {
-                              isArray: false
-                          }
-                      }
-                  );
-              }
-              // else {
-              //    return $resource(
-              //        $rootScope.API + '/api/metadata?assumeTrue=false&organisationUnits=true', {
-              //            level: level,
-              //            fields: "id, name, coordinates, level, children, parent, shortName, description, code"
-              //        }, {
-              //            'query': {
-              //                isArray: false
-              //            }
-              //        }
-              //    );
-              //}
-            },
+            // gets facilities
+            getFacilities: function(name, level){
+                var filters = ""; // used to apply filters to the search, from DHIS api 1.7
+                if(name != "") {
+                    filters += "&filter=name:ilike:" + name;
+                }
+                if(level != 0) {
+                    filters += "&filter=level:eq:" + level.toString();
+                }
 
-            //// Gets specific organisation unit
-            //getOrganisationUnit: function(id){
-            //    return $resource(
-            //        $rootScope.API + '/api/organisationUnits/' + id, {
-            //            fields: "id, name"
-            //        }, {
-            //            'query':{
-            //                isArray: false
-            //            }
-            //        }
-            //    );
-            //},
+                return $resource(
+                    $rootScope.API + '/api/metadata?assumeTrue=false&organisationUnits=true' + filters, {
+                        fields: "id, name, coordinates, level, children, parent, shortName, description, code"
+                    }, {
+                        'query': {
+                            isArray: false
+                        }
+                    }
+                );
+            },
 
             createUnit: function(){
                return $resource(
