@@ -41,7 +41,7 @@
             $scope.customMarker = { idKey: "001", coords: {}};
 
             $scope.oneAtATime = true;
-            $scope.level = 1;
+            $scope.level = 0;
 
 
             // $watch brukes som en slags while-loop som sjekker kontinuerlig
@@ -66,8 +66,11 @@
                             return;
                         }
                         $scope.facilities = result.organisationUnits;
-                        if($scope.level != 0) {
+                        if($scope.level == 2 || $scope.level == 3) {
                             polygonsOnMap();
+                        }
+                        else if($scope.level == 4) {
+                            markersOnMap();
                         }
                     });
                 //}
@@ -95,7 +98,7 @@
                     $scope.facilities = result.organisationUnits;
                     //$scope.levelParent = $scope.facilities[0].parent;
                     //console.log($scope.facilities[2].coordinates);
-                    polygonsOnMap();
+                    //polygonsOnMap();
                     setMainMap();
                 })
             }

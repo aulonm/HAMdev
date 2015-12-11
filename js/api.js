@@ -57,32 +57,39 @@
                           }
                       }
                   );
-              } else {
-                  return $resource(
-                      $rootScope.API + '/api/metadata?assumeTrue=false&organisationUnits=true', {
-                          level: level,
-                          fields: "id, name, coordinates, level, children, parent, shortName, description, code"
-                      }, {
-                          'query': {
-                              isArray: false
-                          }
-                      }
-                  );
               }
+              // else {
+              //    return $resource(
+              //        $rootScope.API + '/api/metadata?assumeTrue=false&organisationUnits=true', {
+              //            level: level,
+              //            fields: "id, name, coordinates, level, children, parent, shortName, description, code"
+              //        }, {
+              //            'query': {
+              //                isArray: false
+              //            }
+              //        }
+              //    );
+              //}
             },
 
-            // Gets specific organisation unit
-            getOrganisationUnit: function(id){
-                return $resource(
-                    $rootScope.API + '/api/organisationUnits/' + id, {
-                        fields: "id, name"
-                    }, {
-                        'query':{
-                            isArray: false
-                        }
-                    }
-                );
-            },
+            //// Gets specific organisation unit
+            //getOrganisationUnit: function(id){
+            //    return $resource(
+            //        $rootScope.API + '/api/organisationUnits/' + id, {
+            //            fields: "id, name"
+            //        }, {
+            //            'query':{
+            //                isArray: false
+            //            }
+            //        }
+            //    );
+            //},
+
+            getFacilities: function(name, level) {
+                if(name == "") {
+
+                }
+            }
 
             createUnit: function(){
                return $resource(
