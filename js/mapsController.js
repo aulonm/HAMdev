@@ -48,35 +48,7 @@
             // om den variabelen blir endret eller ikke. Hvis den blir endra i search-delen, så henter den annen
             // informasjon :)
             // Ser så hacky ut at jeg blir kvalm
-            //$scope.$watch(['name', 'level'], function(){
-            //    //if ($scope.level == 0){
-            //    //    // Do we want to get everything here?
-            //    //    // Like every single entity from the database (about 1300 entities..)
-            //    //}else{
-            //        apiService.getFacilitiesOnLevel($scope.level).get(function(result){
-            //            if($scope.level == 4){
-            //                // THIS IS FOR THE LAST LEVEL, MAYBE PLOT ALL THE MARKERS? NOT SURE
-            //                // Get some other information and not the same as the others, since
-            //                // the others are getting polygons and such, while level 4 doesnt have that
-            //                // It only has coordinates as points, maybe make a new function in api.js
-            //                // that gets this one specific level?
-            //                $scope.facilities = result.organisationUnits;
-            //                markersOnMap();
-            //                $scope.facilityMarkersReady = true;
-            //                return;
-            //            }
-            //            $scope.facilities = result.organisationUnits;
-            //            if($scope.level == 2 || $scope.level == 3) {
-            //                polygonsOnMap();
-            //            }
-            //            else if($scope.level == 4) {
-            //                markersOnMap();
-            //            }
-            //        });
-            //    //}
-            //});
-
-            $scope.search() {
+            $scope.search = function(){
                 apiService.getFacilities($scope.searchName, $scope.level).get(function(result) {
                     $scope.facilities = result.organisationUnits;
                     if($scope.level == 2 || $scope.level == 3) {
@@ -101,7 +73,7 @@
                                 $scope.mapClicked = true;
                                 console.log("Map was clicked: "+$scope.mapClicked);
                                 console.log("Lat: "+$scope.customMarker.coords.latitude+" Long: "+$scope.customMarker.coords.longitude);
-                                setMainMap();
+                                init();
                             }
                         }
                     };
