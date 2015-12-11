@@ -34,9 +34,9 @@
 
             var currentMapCenter = {latitude: 8.536426, longitude: -11.896692};
             var currentMapZoom = 8;
-
             $scope.facilityMarkersReady = false;
 
+            $scope.legallyCreateCustomMarker = false;
             $scope.mapClicked = false;
             $scope.customMarker = { idKey: "001", coords: {}};
 
@@ -60,7 +60,7 @@
                         markersOnMap();
                     }
                 });
-            },
+            };
 
             init();
             function init(){
@@ -70,12 +70,17 @@
                         zoom: currentMapZoom,
                         events: {
                             click: function (mapObject, eventName, originalEventArgs) {
-                                var e = originalEventArgs[0];
-                                $scope.customMarker.coords = { latitude: e.latLng.lat(), longitude: e.latLng.lng()};
-                                $scope.mapClicked = true;
-                                console.log("Map was clicked: "+$scope.mapClicked);
-                                console.log("Lat: "+$scope.customMarker.coords.latitude+" Long: "+$scope.customMarker.coords.longitude);
-                                init();
+                                if ($scope.legallyCreateCustomMarker) {
+                                    var e = originalEventArgs[0];
+                                    $scope.customMarker.coords = {latitude: e.latLng.lat(), longitude: e.latLng.lng()};
+                                    $scope.mapClicked = true;
+                                    console.log("Map was clicked: " + $scope.mapClicked);
+                                    console.log("Lat: " + $scope.customMarker.coords.latitude + " Long: " + $scope.customMarker.coords.longitude);
+
+                                    //magnurh: WTF - hvorfor får dette det til å fungere?????????
+                                    // Her henter vi data fra server - gjør at kartet lastes med den nye markeren
+                                    apiService.makeMapLoad().get();
+                                }
                             }
                         }
                     };
@@ -175,8 +180,6 @@
             }
 
             $scope.setNewCenter = function() {
-                console.log("Map was clicked: "+$scope.mapClicked);
-                console.log("Lat: "+$scope.customMarker.coords.latitude+" Long: "+$scope.customMarker.coords.longitude);
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function (position) {
                         var center = {
@@ -186,7 +189,16 @@
                         currentMapCenter = center;
                         $scope.customMarker.coords = center;
                         $scope.mapClicked = true;
+
+                        //Her må kartet lastes på nytt. Kan eventuelt fikses med panTo()
                         init();
+
+                        //magnurh: WTF - hvorfor får dette det til å fungere?????????
+                        // Her henter vi data fra server - gjør at kartet lastes med den nye markeren
+                        apiService.makeMapLoad().get();
+
+                        console.log("Map was clicked: "+$scope.mapClicked);
+                        console.log("Lat: "+$scope.customMarker.coords.latitude+" Long: "+$scope.customMarker.coords.longitude);
                     });
                 } else {
                     /* We are not allowed to track location */
