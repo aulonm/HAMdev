@@ -218,15 +218,21 @@
             // database
             // NOT TRIED LOL
             $scope.saveNewUnit = function(){
+                var newUnitLatitude = $scope.newUnit.latitude;
+                if (!newUnitLatitude && $scope.customMarker.coords.latitude) newUnitLatitude = $scope.customMarker.coords.latitude.toString();
+                var newUnitLongitude = $scope.newUnit.longitude;
+                if (!newUnitLongitude && $scope.customMarker.coords.longitude) newUnitLongitude = $scope.customMarker.coords.longitude.toString();
+
                 console.log($scope.newUnit.latitude);
                 console.log($scope.newUnit.longitude);
                 console.log($scope.newUnit.newParent);
+
                 var unit = {
                     name: $scope.newUnit.name,
                     shortName: $scope.newUnit.shortName,
                     description: $scope.newUnit.description,
                     code: $scope.newUnit.newCode,
-                    coords: { latitude: $scope.newUnit.latitude, longitude: $scope.newUnit.longitude},
+                    coords: { latitude: newUnitLatitude, longitude: newUnitLongitude},
                     level: $scope.newUnit.newParent,
                     openingDate: new Date()
                 };
