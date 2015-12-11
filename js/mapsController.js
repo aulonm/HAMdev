@@ -89,7 +89,7 @@
                                 $scope.mapClicked = true;
                                 console.log("Map was clicked: "+$scope.mapClicked);
                                 console.log("Lat: "+$scope.customMarker.coords.latitude+" Long: "+$scope.customMarker.coords.longitude);
-                                init();
+                                setMainMap();
                             }
                         }
                     };
