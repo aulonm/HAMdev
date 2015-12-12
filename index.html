@@ -75,23 +75,20 @@
                 <div class="form-group" >
                     <div class="panel-heading">
                         <!-- Denne er litt for stor atm. -->
-                        <h2 data-toggle="collapse" href="#collapse1"
-                            ng-click="legallyCreateCustomMarker = !legallyCreateCustomMarker">Add new
+                        <h2 class="panel-title text-center" data-toggle="collapse" href="#collapse1"
+                            ng-click="legallyCreateCustomMarker = !legallyCreateCustomMarker && searchLevel3()">Add new
                         </h2>
                     </div>
                     <!--ng-submit er for knappen lenger nede-->
                     <form name="newUnitForm"
                           ng-submit="newUnitForm.$valid && saveNewUnit()" novalidate
                           id="collapse1" class="panel-collapse collapse">
-                        <label for="select">Choose Level</label>
-                        <select class="form-control" id="select" ng-model="newUnit.level" required > <!--Required -->
-                            <option value="1">National</option>
-                            <option value="2">District</option>
-                            <option value="3">Chiefdom</option>
-                            <option value="4">Facility</option>
+
+                        <label for="select">Choose parent</label>
+                        <select class="form-control" id="select" ng-model="newUnit.parent">
+                            <option value="chiefdom.id" ng-repeat="chiefdom in chiefdoms | orderBy: 'name'">{{chiefdom.name}}</option>
                         </select>
-                        <label for="newCode">Parent ID</label>
-                        <input type="text" class="form-control" id="newParentId" ng-model="newUnit.parentId" required>
+
                         <label for="newName">Name</label>
                         <input type="text" class="form-control" id="newName" ng-model="newUnit.name" required>
                         <label for="newShortName">Short Name</label>
@@ -149,39 +146,6 @@
                         <button class="btn btn-primary" type="submit" ng-click="updateUnit(facility)">Edit Unit</button>
                     </uib-accordion-group>
                 </uib-accordion>
-                <!--<div class="panel-group" id="accordion">
-                    &lt;!&ndash; Vennesla &ndash;&gt;
-                    <div class="panel panel-default" ng-repeat="facility in facilities | orderBy: 'name' | filter:search:strict">
-                        &lt;!&ndash;<div class="panel-heading">
-                            <h4 class="panel-title">
-                                <accordion id="accordion_{{$index+((currentPage-1)*20)+1}}" close-others="false">
-                                    <accordion-group heading="{{facility.name}}" is-open="facility.open"></accordion-group>
-                                </accordion>
-                            </h4>
-                        </div>&ndash;&gt;
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">{{facility.name}}</a>
-                            </h4>
-                        </div>
-                        <div id="collapse1" class="panel-collapse collapse">
-                            <form class="panel-body">
-                                &lt;!&ndash;<h5>Name</h5>&ndash;&gt;
-                                <div class="form-group">
-                                    <label for="ResultName">Name</label>
-                                    <input type="text" class="form-control" id="ResultName" value="Vennesla">
-                                </div>
-                                <div class="form-group">
-                                    <label for="ResultShortName">Short name</label>
-                                    <input type="text" class="form-control" id="ResultShortName" value="Norges høl">
-                                </div>
-                                <button type="button" class="btn btn-primary" id="saveVennesla">
-                                    <span class="glyphicon glyphicon-floppy-disk"> Save</span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>-->
             </div>
         </div>
     </div>
