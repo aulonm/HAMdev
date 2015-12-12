@@ -236,7 +236,8 @@
                     shortName: $scope.newUnit.shortName,
                     description: $scope.newUnit.description,
                     code: $scope.newUnit.code,
-                    coords: [parseInt(newUnitLongitude), parseInt(newUnitLatitude)],
+                    //featureType: 'POINT',
+                    coordinates: "["+newUnitLongitude+", "+newUnitLatitude+"]",
                     level: parseInt($scope.newUnit.level),
                     openingDate: new Date(),
                     parent: { id: $scope.newUnit.parentId }
@@ -248,8 +249,8 @@
             };
 
             $scope.updateUnit = function(facility) {
-               /* console.log("updateUnit :\n\tid: " + newId + "\n\tname: " + newName + "\n\tshortName: " + newShortName);
-                var unit = {
+                console.log("updateUnit :\n\tid: " + facility.id + "\n\tname: " + facility.name + "\n\tshortName: " + facility.shortName);
+                /*var unit = {
                     id: newId,
                     name: newName,
                     shortName: newShortName
