@@ -94,6 +94,7 @@
                 if ($scope.level != 4) return;
 
                 function pushMarkersToMap(id, facility){
+                    facility.viewCoords = {};
 
                     if(!facility.coordinates){
                         console.log("No coordinates available for "+id);
@@ -101,6 +102,8 @@
                     }
                     console.log("Coordinates for "+id+":");
                     var geoData = JSON.parse(facility.coordinates);
+                    facility.viewCoords = {latitude: geoData[1], longitude: geoData[0]};
+                    console.log(facility.coords);
                     console.log(facility.name);
                     console.log(geoData);
 
@@ -249,7 +252,8 @@
             };
 
             $scope.updateUnit = function(facility) {
-                console.log("updateUnit :\n\tid: " + facility.id + "\n\tname: " + facility.name + "\n\tshortName: " + facility.shortName);
+                facility.coordinates = "["+facility.viewCoords.longitude+", "+facility.viewCoords.latitude+"]";
+                console.log("updateUnit :\n\tid: " + facility.id + "\n\tname: " + facility.name + "\n\tshortName: " + facility.shortName + "\n\tcoords: " + facility.coordinates);
                 /*var unit = {
                     id: newId,
                     name: newName,
