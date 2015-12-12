@@ -246,6 +246,19 @@
                 apiService.createUnit().save(unit, function(){
                     $location.path('/');
                 });
+
+                // Did not find some other way of clearing the input fields
+                $scope.newUnitForm.$setPristine();
+                $scope.newUnit.level = {};
+                $scope.newUnit.parentId = "";
+                $scope.newUnit.name = "";
+                $scope.newUnit.shortName = "";
+                $scope.newUnit.description = "";
+                $scope.newUnit.code = "";
+                $scope.newUnit.latitude = "";
+                $scope.newUnit.longitude = "";
+                $scope.customMarker = {};
+                $scope.mapClicked = false;
             };
 
             $scope.updateUnit = function(facility) {
