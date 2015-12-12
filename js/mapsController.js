@@ -260,7 +260,7 @@
                 $scope.newUnit.code = "";
                 $scope.newUnit.latitude = "";
                 $scope.newUnit.longitude = "";
-                $scope.customMarker = {};
+                $scope.customMarker = { idKey: "001"};
                 $scope.mapClicked = false;
             };
 

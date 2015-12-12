@@ -128,7 +128,7 @@
                 <div class="panel-heading">
                     <h2 class="panel-title text-center">Results</h2>
                 </div>
-                <uib-accordion close-others="oneAtATime" ng-click="legallyCreateCustomMarker = !legallyCreateCustomMarker">
+                <uib-accordion close-others="oneAtATime" ng-click="legallyCreateCustomMarker = true">
                     <uib-accordion-group heading="{{facility.name}}" ng-repeat="facility in facilities | orderBy: 'name'">
                         <label for="newName">Name</label>
                         <input type="text" class="form-control" id="newName" ng-init="editUnit.name=facility.name" ng-model="facility.name">
@@ -136,13 +136,13 @@
                         <input type="text" class="form-control" id="newShortName" ng-init="editUnit.shortName=facility.shortName" ng-model="facility.shortName">
                         <label for="newLatitude" ng-show="facility.level==4">Latitude</label>
                         <input type="text" class="form-control" id="newLatitude"
-                               ng-init="editUnit.latitude=facility.viewCoords.latitude"
+                               ng-init="customMarker.coords.latitude=facility.viewCoords.latitude"
                                ng-model="facility.viewCoords.latitude"
                                ng-value="customMarker.coords.latitude"
                                ng-show="facility.level==4">
                         <label for="newLongitude" ng-show="facility.level==4">Longitude</label>
                         <input type="text" class="form-control" id="newLongitude"
-                               ng-init="editUnit.longitude=facility.viewCoords.longitude"
+                               ng-init="customMarker.coords.longitude=facility.viewCoords.longitude"
                                ng-model="facility.viewCoords.longitude"
                                ng-value="customMarker.coords.longitude"
                                ng-show="facility.level==4">
