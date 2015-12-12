@@ -255,7 +255,7 @@
                     coordinates: "["+newUnitLongitude+", "+newUnitLatitude+"]",
                     level: parseInt($scope.newUnit.level),
                     openingDate: new Date(),
-                    parent: { id: $scope.newUnit.parentId }
+                    parent: { id: $scope.newUnit.parentId.id }
                 };
                 console.log(unit);
                 apiService.createUnit().save(unit, function(){
