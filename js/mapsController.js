@@ -54,12 +54,20 @@
                 apiService.getFacilities($scope.searchName, $scope.level).get(function(result) {
                     $scope.facilities = result.organisationUnits;
                     //console.log(result.organisationUnits);
+
                     if($scope.level == 2 || $scope.level == 3) {
                         polygonsOnMap();
                     }
                     else if($scope.level == 4) {
                         markersOnMap();
                     }
+                });
+            };
+
+            // used for getting the level 3 facilities to create the parent dropdown menu in create new
+            $scope.searchLevel3 = function() {
+                apiService.getFacilities("", 3).get(function(result) {
+                   $scope.chiefdoms = result.organisationUnits;
                 });
             };
 
