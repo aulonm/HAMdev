@@ -44,6 +44,7 @@
             $scope.level = 0;
 
 
+
             // $watch brukes som en slags while-loop som sjekker kontinuerlig
             // om den variabelen blir endret eller ikke. Hvis den blir endra i search-delen, så henter den annen
             // informasjon :)
@@ -246,14 +247,14 @@
                 });
             };
 
-            $scope.updateUnit = function(newId, newName, newShortName) {
-                console.log("updateUnit :\n\tid: " + newId + "\n\tname: " + newName + "\n\tshortName: " + newShortName);
+            $scope.updateUnit = function(facility) {
+               /* console.log("updateUnit :\n\tid: " + newId + "\n\tname: " + newName + "\n\tshortName: " + newShortName);
                 var unit = {
                     id: newId,
                     name: newName,
                     shortName: newShortName
-                }
-                apiService.createUnit().save(unit, function(){
+                };*/
+                apiService.updateUnit(facility.id).update(facility, function(){
                     $location.path('/');
                 });
             };
