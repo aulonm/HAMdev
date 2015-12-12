@@ -43,6 +43,8 @@
             $scope.oneAtATime = true;
             $scope.level = 0;
 
+            $scope.editUnit = {};
+
 
 
             // $watch brukes som en slags while-loop som sjekker kontinuerlig
@@ -82,6 +84,8 @@
                                 if ($scope.legallyCreateCustomMarker) {
                                     var e = originalEventArgs[0];
                                     $scope.customMarker.coords = {latitude: e.latLng.lat(), longitude: e.latLng.lng()};
+                                    $scope.editUnit.latitude = e.latLng.lat();
+                                    $scope.editUnit.longitude = e.latLng.lng();
                                     $scope.mapClicked = true;
                                     console.log("Map was clicked: " + $scope.mapClicked);
                                     console.log("Lat: " + $scope.customMarker.coords.latitude + " Long: " + $scope.customMarker.coords.longitude);

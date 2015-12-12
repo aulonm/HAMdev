@@ -133,13 +133,13 @@
                         <input type="text" class="form-control" id="newShortName" ng-init="editUnit.shortName=facility.shortName" ng-model="facility.shortName">
                         <label for="newLatitude" ng-show="facility.level==4">Latitude</label>
                         <input type="text" class="form-control" id="newLatitude"
-                               ng-init="customMarker.coords.latitude=facility.viewCoords.latitude"
+                               ng-init="editUnit.latitude=facility.viewCoords.latitude"
                                ng-model="facility.viewCoords.latitude"
                                ng-value="customMarker.coords.latitude"
                                ng-show="facility.level==4">
                         <label for="newLongitude" ng-show="facility.level==4">Longitude</label>
                         <input type="text" class="form-control" id="newLongitude"
-                               ng-init="customMarker.coords.longitude=facility.viewCoords.longitude"
+                               ng-init="editUnit.longitude=facility.viewCoords.longitude"
                                ng-model="facility.viewCoords.longitude"
                                ng-value="customMarker.coords.longitude"
                                ng-show="facility.level==4">
