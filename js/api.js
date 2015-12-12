@@ -58,7 +58,7 @@
                 return $resource(
                     $rootScope.API + '/api/organisationUnits?paging=false:filter', {
                         filter: filters,
-                        fields: "id, name, coordinates, level, children, parent, shortName, description, code"
+                        fields: "id, name, coordinates, level, children, parent, shortName, description, code, openingDate"
                     }, {
                         'query': {
                             isArray: false
