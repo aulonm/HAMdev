@@ -236,7 +236,7 @@
                     shortName: $scope.newUnit.shortName,
                     description: $scope.newUnit.description,
                     code: $scope.newUnit.code,
-                    coords: [parseInt(newUnitLongitude), parseInt(newUnitLatitude)],
+                    coordinates: [parseInt(newUnitLongitude), parseInt(newUnitLatitude)],
                     level: parseInt($scope.newUnit.level),
                     openingDate: new Date(),
                     parent: { id: $scope.newUnit.parentId }
@@ -254,6 +254,7 @@
                     name: newName,
                     shortName: newShortName
                 };*/
+                console.log(facility);
                 apiService.updateUnit(facility.id).update(facility, function(){
                     $location.path('/');
                 });
