@@ -236,7 +236,8 @@
                     shortName: $scope.newUnit.shortName,
                     description: $scope.newUnit.description,
                     code: $scope.newUnit.code,
-                    coordinates: [parseInt(newUnitLongitude), parseInt(newUnitLatitude)],
+                    //featureType: 'POINT',
+                    coordinates: "["+newUnitLongitude+", "+newUnitLatitude+"]",
                     level: parseInt($scope.newUnit.level),
                     openingDate: new Date(),
                     parent: { id: $scope.newUnit.parentId }
