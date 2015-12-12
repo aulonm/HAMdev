@@ -270,8 +270,8 @@
                 $scope.newUnit.shortName = "";
                 $scope.newUnit.description = "";
                 $scope.newUnit.code = "";
-                $scope.newUnit.latitude = "";
-                $scope.newUnit.longitude = "";
+                //$scope.newUnit.latitude = "";
+                //$scope.newUnit.longitude = "";
                 $scope.customMarker = { idKey: "001"};
                 $scope.mapClicked = false;
             };
