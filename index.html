@@ -76,7 +76,7 @@
                     <div class="panel-heading">
                         <!-- Denne er litt for stor atm. -->
                         <h2 class="panel-title text-center" data-toggle="collapse" href="#collapse1"
-                            ng-click="(legallyCreateCustomMarker = !legallyCreateCustomMarker) && searchLevel3()">Add new
+                            ng-click="(legallyCreateCustomMarker = true) && searchLevel3()">Add new
                         </h2>
                     </div>
                     <!--ng-submit er for knappen lenger nede-->
@@ -138,7 +138,7 @@
                         <div ng-show="facility.level==4">
                             <label >Current Latitude</label>
                             <p>{{facility.viewCoords.latitude}}</p>
-                            <label >Original Longitude</label>
+                            <label >Current Longitude</label>
                             <p>{{facility.viewCoords.longitude}}</p>
                             <label for="newLatitude" ng-show="facility.level==4">New latitude</label>
                             <input type="text" class="form-control" id="newLatitude"

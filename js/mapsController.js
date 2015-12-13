@@ -233,6 +233,11 @@
             // input forms, then does a save-function to push to
             // database
             // NOT TRIED LOL
+            var clearCustomMarker = function(){
+                $scope.customMarker = { idKey: "001"};
+                $scope.mapClicked = false;
+            };
+
             $scope.saveNewUnit = function(){
                 var newUnitLatitude = $scope.newUnit.latitude;
                 if (!newUnitLatitude && $scope.customMarker.coords.latitude) newUnitLatitude = $scope.customMarker.coords.latitude.toString();
@@ -272,12 +277,11 @@
                 $scope.newUnit.code = "";
                 //$scope.newUnit.latitude = "";
                 //$scope.newUnit.longitude = "";
-                $scope.customMarker = { idKey: "001"};
-                $scope.mapClicked = false;
+                clearCustomMarker();
             };
 
             $scope.updateUnit = function(facility) {
-
+                if(!facility.viewCoords) facility.viewCoords = {};
                 if($scope.editUnit.latitude) facility.viewCoords.latitude = $scope.editUnit.latitude;
                 else if($scope.customMarker.latitude) facility.viewCoords.latitude = $scope.customMarker.latitude;
                 if($scope.editUnit.longitude) facility.viewCoords.longitude = $scope.editUnit.longitude;
@@ -294,6 +298,7 @@
                 apiService.updateUnit(facility.id).update(facility, function(){
                     $location.path('/');
                 });
+                //clearCustomMarker();
             };
 
 
