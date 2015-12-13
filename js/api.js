@@ -6,7 +6,6 @@
 (function(services){
     'use strict';
 
-
     services.factory("apiService", function($q, $resource, $http, $rootScope){
         // Get requests osv
         var xhttp = new XMLHttpRequest();
@@ -16,45 +15,20 @@
         var response = JSON.parse(xhttp.responseText);
         $rootScope.API = response.activities.dhis.href; //need to doublecheck this
 
-        // The database
-        // https://play.dhis2.org/demo/api/organisationUnits
-        // List of organisation units like this:
-        //<organisationUnit lastUpdated="2014-11-25T09:37:54.322+0000" code="OU_651071" created="2012-02-17T15:54:39.987+0000" name="Adonkia CHP" id="Rp268JB6Ne4" href="https://play.dhis2.org/demo/api/organisationUnits/Rp268JB6Ne4"/>
-        //Inside each unit, the information is like this:
-        //<organisationUnit xmlns="http://dhis2.org/schema/dxf/2.0" code="OU_651071" uuid="bf07fb5b-a1cf-4a83-b3ec-9cc42854adcf" lastUpdated="2014-11-25T09:37:54.322+0000" href="https://play.dhis2.org/demo/api/organisationUnits/Rp268JB6Ne4" id="Rp268JB6Ne4" level="4" created="2012-02-17T15:54:39.987+0000" name="Adonkia CHP" shortName="Adonkia CHP">
-        // name: "Adonkia CHP"
-        // shortname: "Adonkia CHP"
-        // level="4"
-        // parent: <parent id="qtr8GGlm4gg" name="Rural Western Area"
-        // two children
-
-
-        // Level one organisation:
-        //https://play.dhis2.org/demo/api/organisationUnits/ImspTQPwCqd
-        // level two organisation: Fuckton of coordinates (POLYGONS!)
-        // https://play.dhis2.org/demo/api/organisationUnits/eIQbndfxQMb
-        // level three organisation: Has many coordinates (POLYGONS)
-        // https://play.dhis2.org/demo/api/organisationUnits/l0ccv2yzfF3
-        // level four organisation:
-        // https://play.dhis2.org/demo/api/organisationUnits/OY7mYDATra3
-        //
-
         return {
-
-            // HOW THIS SHIT WORKS!
+            // Angular $resource documentation
             //https://docs.angularjs.org/api/ngResource/service/$resource
 
-            // gets facilities
+            // call to DHIS2 API to get organisation units
             getFacilities: function(name, level){
-                //console.log("getFacilities with name " + name);
                 var filters = ""; // used to apply filters to the search, from DHIS api 1.7
+                // check for empty name, apply filter if not empty. ilike check stringmatch anywhere in string case insensitive
                 if(name != "" && name != null) {
                     filters += "&filter=name:ilike:" + name;
                 }
-                if(level != 0) {
+                if(level != 0) { // add filter for level if present
                     filters += "&filter=level:eq:" + level;
                 }
-                console.log($rootScope.API + '/api/organisationUnits?paging=false' + filters);
                 return $resource(
                     $rootScope.API + '/api/organisationUnits?paging=false:filter', {
                         filter: filters,
@@ -67,12 +41,14 @@
                 );
             },
 
+            // call to DHIS2 API to create new facility
             createUnit: function(){
                return $resource(
                    $rootScope.API + '/api/organisationUnits/', {},{}
                );
             },
 
+            // call to DHIS2 API to update a given facility
             updateUnit: function(id){
                 return $resource(
                     $rootScope.API + '/api/organisationUnits/' + id, {},
@@ -89,14 +65,6 @@
                     $rootScope.API + '/api/organisationUnits/', {},{}
                 );
             }
-
-            // Different functions
-            // getting organization units
-            // saving units
-            // etc.
-            // I think this is a good way of doing it
-            // Doesnt actually save, just returns json files. The controller saves stuff to variables and arrays
-            // and shit
         }
     });
 

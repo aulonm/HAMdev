@@ -10,7 +10,6 @@
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-
     <!-- Angular -->
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
@@ -54,7 +53,8 @@
                 <div class="input-group">
                     <!--<h3>Search</h3>-->
                     <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit" ng-click="search()"><i class="glyphicon glyphicon-search"></i>
+                        <button class="btn btn-default" type="submit" ng-click="search()">
+                            <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </div>
                     <input type="text" class="form-control" placeholder="Example: Vennesla" ng-model="searchName">
@@ -84,13 +84,11 @@
                           ng-submit="newUnitForm.$valid && saveNewUnit()" novalidate
                           id="collapse1" class="panel-collapse collapse">
 
-                        <!--<label for="select">Choose parent</label>-->
-                        <!--<select class="form-control" id="select" ng-model="newUnit.parent">-->
-                            <!--<option value="chiefdom.id" ng-repeat="chiefdom in chiefdoms | orderBy: 'name'">{{chiefdom.name}}</option>-->
-                        <!--</select>-->
+                        <!-- ng-option iterates through chiefdoms and saves them to the list -->
                         <label>Choose Parent</label>
-                        <select class="form-control" ng-options="chiefdom.name for chiefdom in chiefdoms track by chiefdom.id" ng-model="newUnit.parentId">
-
+                        <select class="form-control"
+                                ng-options="chiefdom.name for chiefdom in chiefdoms track by chiefdom.id"
+                                ng-model="newUnit.parentId">
                         </select>
 
                         <label for="newName">Name</label>
@@ -99,7 +97,8 @@
                         <input type="text" class="form-control" id="newShortName" ng-model="newUnit.shortName" required>
                         <div class="form-group">
                             <label for="comment">Description:</label>
-                            <textarea class="form-control" ng-model="newUnit.description" rows="5" id="comment"></textarea>
+                            <textarea class="form-control" ng-model="newUnit.description"
+                                      rows="5" id="comment"></textarea>
                         </div>
                         <label for="newCode">Code</label>
                         <input type="text" class="form-control" id="newCode" ng-model="newUnit.code">
@@ -132,9 +131,11 @@
                 <uib-accordion close-others="oneAtATime" ng-click="legallyCreateCustomMarker = true">
                     <uib-accordion-group heading="{{facility.name}}" ng-repeat="facility in facilities | orderBy: 'name'">
                         <label for="newName">Name</label>
-                        <input type="text" class="form-control" id="newName" ng-init="editUnit.name=facility.name" ng-model="facility.name">
+                        <input type="text" class="form-control" id="newName"
+                               ng-init="editUnit.name=facility.name" ng-model="facility.name">
                         <label for="newShortName">Short Name</label>
-                        <input type="text" class="form-control" id="newShortName" ng-init="editUnit.shortName=facility.shortName" ng-model="facility.shortName">
+                        <input type="text" class="form-control" id="newShortName"
+                               ng-init="editUnit.shortName=facility.shortName" ng-model="facility.shortName">
                         <div ng-show="facility.level==4">
                             <label >Current latitude</label>
                             <p>{{facility.viewCoords.latitude}}</p>
@@ -165,8 +166,7 @@
                                  coords="'coords'"
                                  idKey="model.id"
                                  doCluster="true"
-                                 options="'options'"
-                >
+                                 options="'options'">
                 </ui-gmap-markers>
                 <ui-gmap-polygon static="true"
                                  ng-repeat="p in unitPolygons"

@@ -14,7 +14,6 @@
     /* Define modules */
     var app = angular.module('main', ['mainControllers']);
 
-
     /* Enable CORS */
     app.config(['$httpProvider', function($httpProvider) {
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
