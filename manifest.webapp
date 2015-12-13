@@ -14,7 +14,7 @@
     "default_locale": "en",
     "activities": {
         "dhis": {
-            "href": "http://localhost:8082"
+            "href": "https://play.dhis2.org/demo"
         }
     }
 }
