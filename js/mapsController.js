@@ -277,6 +277,12 @@
             };
 
             $scope.updateUnit = function(facility) {
+
+                if($scope.editUnit.latitude) facility.viewCoords.latitude = $scope.editUnit.latitude;
+                else if($scope.customMarker.latitude) facility.viewCoords.latitude = $scope.customMarker.latitude;
+                if($scope.editUnit.longitude) facility.viewCoords.longitude = $scope.editUnit.longitude;
+                else if($scope.customMarker.longitude) facility.viewCoords.longitude = $scope.customMarker.longitude;
+
                 facility.coordinates = "["+facility.viewCoords.longitude+", "+facility.viewCoords.latitude+"]";
                 console.log("updateUnit :\n\tid: " + facility.id + "\n\tname: " + facility.name + "\n\tshortName: " + facility.shortName + "\n\tcoords: " + facility.coordinates);
                 /*var unit = {

@@ -131,18 +131,20 @@
                         <input type="text" class="form-control" id="newName" ng-init="editUnit.name=facility.name" ng-model="facility.name">
                         <label for="newShortName">Short Name</label>
                         <input type="text" class="form-control" id="newShortName" ng-init="editUnit.shortName=facility.shortName" ng-model="facility.shortName">
-                        <label for="newLatitude" ng-show="facility.level==4">Latitude</label>
-                        <input type="text" class="form-control" id="newLatitude"
-                               ng-init="editUnit.latitude=facility.viewCoords.latitude"
-                               ng-model="facility.viewCoords.latitude"
-                               ng-value="customMarker.coords.latitude"
-                               ng-show="facility.level==4">
-                        <label for="newLongitude" ng-show="facility.level==4">Longitude</label>
-                        <input type="text" class="form-control" id="newLongitude"
-                               ng-init="editUnit.longitude=facility.viewCoords.longitude"
-                               ng-model="facility.viewCoords.longitude"
-                               ng-value="customMarker.coords.longitude"
-                               ng-show="facility.level==4">
+                        <div ng-show="facility.level==4">
+                            <label >Current Latitude</label>
+                            <p>{{facility.viewCoords.latitude}}</p>
+                            <label >Original Longitude</label>
+                            <p>{{facility.viewCoords.longitude}}</p>
+                            <label for="newLatitude" ng-show="facility.level==4">New latitude</label>
+                            <input type="text" class="form-control" id="newLatitude"
+                                   ng-model="editUnit.latitude"
+                                   ng-value="customMarker.coords.latitude">
+                            <label for="newLongitude" ng-show="facility.level==4">New longitude</label>
+                            <input type="text" class="form-control" id="newLongitude"
+                                   ng-model="editUnit.longitude"
+                                   ng-value="customMarker.coords.longitude">
+                        </div>
                         <button class="btn btn-primary" type="submit" ng-click="updateUnit(facility)">Edit Unit</button>
                     </uib-accordion-group>
                 </uib-accordion>
