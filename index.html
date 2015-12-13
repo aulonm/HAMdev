@@ -136,9 +136,9 @@
                         <label for="newShortName">Short Name</label>
                         <input type="text" class="form-control" id="newShortName" ng-init="editUnit.shortName=facility.shortName" ng-model="facility.shortName">
                         <div ng-show="facility.level==4">
-                            <label >Current Latitude</label>
+                            <label >Current latitude</label>
                             <p>{{facility.viewCoords.latitude}}</p>
-                            <label >Current Longitude</label>
+                            <label >Current longitude</label>
                             <p>{{facility.viewCoords.longitude}}</p>
                             <label for="newLatitude" ng-show="facility.level==4">New latitude</label>
                             <input type="text" class="form-control" id="newLatitude"

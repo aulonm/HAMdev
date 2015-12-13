@@ -57,6 +57,13 @@
                     $scope.facilities = result.organisationUnits;
                     //console.log(result.organisationUnits);
 
+                    // Markers for results
+                    $scope.unitMarkers = [];
+                    $scope.facilityMarkersReady = false;
+                    // Polygons for results
+                    $scope.unitPolygons = [];
+
+
                     if($scope.level == 2 || $scope.level == 3) {
                         polygonsOnMap();
                     }
@@ -102,7 +109,8 @@
             }
 
             function markersOnMap(){
-                $scope.unitMarkers = [];
+                // moved to search function
+                //$scope.unitMarkers = [];
                 if ($scope.level != 4) return;
 
                 function pushMarkersToMap(id, facility){
@@ -143,7 +151,8 @@
 
             function polygonsOnMap(){
                 // All the polygons are here
-                $scope.unitPolygons = [];
+                // edit: is now moved to the search function
+                //$scope.unitPolygons = [];
 
                 // Goes through a facility/district and adds its polygons to one
                 // array, and then pushes that array to the outer array which is called
